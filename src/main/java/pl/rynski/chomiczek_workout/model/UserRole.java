@@ -30,12 +30,12 @@ public class UserRole {
         this.id = id;
     }
 
-    public String getName() {
+    public String getRole() {
         return role;
     }
 
-    public void setName(String name) {
-        this.role = name;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Set<User> getUsers() {
@@ -50,7 +50,7 @@ public class UserRole {
     public String toString() {
         return "UserRole{" +
                 "id=" + id +
-                ", name='" + role + '\'' +
+                ", role='" + role + '\'' +
                 ", users=" + users +
                 '}';
     }

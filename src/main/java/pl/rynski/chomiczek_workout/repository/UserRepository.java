@@ -5,4 +5,5 @@ import pl.rynski.chomiczek_workout.model.User;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUsername(String username);
 }
