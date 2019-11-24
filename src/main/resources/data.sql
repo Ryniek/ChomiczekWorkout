@@ -1,0 +1,1 @@
+INSERT INTO user_role(role) VALUE ("ROLE_USER");
