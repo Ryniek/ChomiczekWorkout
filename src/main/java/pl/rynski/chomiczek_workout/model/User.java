@@ -16,6 +16,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
     //gdhdgdgdgdgdgd ciastka sa dobre
+    //gdgdgdgdgdgdg duzo ciastek hie hie
     public User() {
     }
 
