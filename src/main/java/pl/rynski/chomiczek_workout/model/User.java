@@ -15,7 +15,7 @@ public class User {
     private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
-
+    //gdhdgdgdgdgdgd ciastka sa dobre
     public User() {
     }
 
