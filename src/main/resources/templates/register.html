@@ -23,7 +23,7 @@
                     <div style="text-align: center;"><h3 class="panel-title">Zarejestruj się na Chomiczka!</h3></div>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <form th:action="@{/register}" th:object="${userForm}" role="form">
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
