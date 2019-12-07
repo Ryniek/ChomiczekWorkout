@@ -36,7 +36,7 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user, Model model) {
+    public String registerUser(@ModelAttribute User user) {
         userService.addUserWithDefaultRole(user);
         return "redirect:/";
     }

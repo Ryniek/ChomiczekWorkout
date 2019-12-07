@@ -13,17 +13,17 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private int height;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
-    //gdhdgdgdgdgdgd ciastka sa dobre
-    //gdgdgdgdgdgdg duzo ciastek hie hie
     public User() {
     }
 
-    public User(String username, String password, String email, Set<UserRole> roles) {
+    public User(String username, String password, String email,int height, Set<UserRole> roles) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.height = height;
         this.roles = roles;
     }
 
@@ -59,6 +59,14 @@ public class User {
         this.email = email;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
     public Set<UserRole> getRoles() {
         return roles;
     }
@@ -74,6 +82,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", height=" + height +
                 ", roles=" + roles +
                 '}';
     }
