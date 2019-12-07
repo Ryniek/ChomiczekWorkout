@@ -1,10 +1,13 @@
 package pl.rynski.chomiczek_workout.model;
 
+import pl.rynski.chomiczek_workout.validation.PasswordMatches;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@PasswordMatches
 public class User {
 
     @Id
@@ -12,6 +15,8 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    @Transient
+    private String confirmPassword;
     private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
@@ -19,9 +24,10 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, Set<UserRole> roles) {
+    public User(String username, String password, String email, String confirmPassword, Set<UserRole> roles) {
         this.username = username;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.email = email;
         this.roles = roles;
     }
@@ -48,6 +54,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
     public String getEmail() {
