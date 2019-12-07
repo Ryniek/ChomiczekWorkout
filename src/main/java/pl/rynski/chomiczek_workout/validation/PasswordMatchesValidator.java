@@ -1,6 +1,6 @@
 package pl.rynski.chomiczek_workout.validation;
 
-import pl.rynski.chomiczek_workout.model.User;
+import pl.rynski.chomiczek_workout.model.UserDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -12,7 +12,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
     }
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context){
-        User user = (User) obj;
+        UserDto user = (UserDto) obj;
         return user.getPassword().equals(user.getConfirmPassword());
     }
 }
