@@ -16,12 +16,10 @@ import javax.validation.Validator;
 @RequestMapping("/")
 public class HomeController {
 
-    private Validator validator;
     private UserService userService;
 
     @Autowired
-    public HomeController(Validator validator, UserService userService) {
-        this.validator = validator;
+    public HomeController(UserService userService) {
         this.userService = userService;
     }
 
