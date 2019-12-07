@@ -16,12 +16,10 @@ import javax.validation.Validator;
 @RequestMapping("/")
 public class HomeController {
 
-    private Validator validator;
     private UserService userService;
 
     @Autowired
-    public HomeController(Validator validator, UserService userService) {
-        this.validator = validator;
+    public HomeController(UserService userService) {
         this.userService = userService;
     }
 
@@ -44,6 +42,7 @@ public class HomeController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
+
         if(!bindingResult.hasErrors()) {
             user.setPassword(userDto.getPassword());
             userService.addUserWithDefaultRole(user);

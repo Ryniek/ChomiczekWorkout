@@ -20,12 +20,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/styles/**", "/images/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/index.html").permitAll()
+                .loginPage("/").permitAll()
                 .loginProcessingUrl("/processlogin").permitAll()
                 .usernameParameter("user")
                 .passwordParameter("pass")
