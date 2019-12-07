@@ -42,6 +42,7 @@ public class HomeController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
+
         if(!bindingResult.hasErrors()) {
             user.setPassword(userDto.getPassword());
             userService.addUserWithDefaultRole(user);
