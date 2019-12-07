@@ -23,28 +23,36 @@
                     <div style="text-align: center;"><h3 class="panel-title">Zarejestruj się na Chomiczka!</h3></div>
                 </div>
                 <div class="panel-body">
+
                     <form th:action="@{/register}" th:object="${userForm}"  role="form" >
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <input th:field="*{username}" type="text" class="form-control input-sm" placeholder="Login">
+
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
+
                             <input th:field="*{email}" type="email" id="email" class="form-control input-sm" placeholder="Adres Email">
+
                         </div>
 
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
+
                                     <input th:field="${userDto.password}" type="password" class="form-control input-sm" placeholder="Hasło">
+                                  
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
+
                                     <input th:name="passConfirmation" type="password" id="password_confirmation" class="form-control input-sm" placeholder="Potwierdź hasło">
+
                                 </div>
                             </div>-
                         </div>
