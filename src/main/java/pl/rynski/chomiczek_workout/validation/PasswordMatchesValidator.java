@@ -1,7 +1,5 @@
 package pl.rynski.chomiczek_workout.validation;
 
-
-
 import pl.rynski.chomiczek_workout.model.User;
 
 import javax.validation.ConstraintValidator;

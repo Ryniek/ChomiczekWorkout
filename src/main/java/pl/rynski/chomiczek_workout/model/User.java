@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@PasswordMatches
+@PasswordMatches(message = "Passwords are not equal")
 public class User {
 
     @Id
@@ -58,6 +58,10 @@ public class User {
 
     public String getConfirmPassword() {
         return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getEmail() {
