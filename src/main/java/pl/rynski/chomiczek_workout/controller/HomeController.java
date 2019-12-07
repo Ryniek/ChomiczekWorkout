@@ -3,18 +3,25 @@ package pl.rynski.chomiczek_workout.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.rynski.chomiczek_workout.model.User;
+import pl.rynski.chomiczek_workout.model.UserDto;
 import pl.rynski.chomiczek_workout.service.UserService;
+
+import javax.validation.Valid;
+import javax.validation.Validator;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
 
+    private Validator validator;
     private UserService userService;
 
     @Autowired
-    public HomeController(UserService userService) {
+    public HomeController(Validator validator, UserService userService) {
+        this.validator = validator;
         this.userService = userService;
     }
 
@@ -30,15 +37,21 @@ public class HomeController {
 
     @GetMapping("/register")
     public String getRegister(Model model) {
-        User user = new User();
-        model.addAttribute("userForm", user);
+        model.addAttribute("userForm", new User());
+        model.addAttribute("userDto", new UserDto());
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user, Model model) {
-        userService.addUserWithDefaultRole(user);
-        return "redirect:/";
+    public String registerUser(@ModelAttribute User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
+        if(!bindingResult.hasErrors()) {
+            user.setPassword(userDto.getPassword());
+            userService.addUserWithDefaultRole(user);
+            return "redirect:/";
+        }
+        else {
+            return "redirect:/register";
+        }
     }
 
     @GetMapping("/logmeout")
