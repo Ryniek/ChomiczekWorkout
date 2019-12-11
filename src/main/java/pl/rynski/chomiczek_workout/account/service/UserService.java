@@ -1,12 +1,12 @@
-package pl.rynski.chomiczek_workout.service;
+package pl.rynski.chomiczek_workout.account.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.rynski.chomiczek_workout.model.User;
-import pl.rynski.chomiczek_workout.model.UserRole;
-import pl.rynski.chomiczek_workout.repository.UserRepository;
-import pl.rynski.chomiczek_workout.repository.UserRoleRepository;
+import pl.rynski.chomiczek_workout.account.model.User;
+import pl.rynski.chomiczek_workout.account.model.UserRole;
+import pl.rynski.chomiczek_workout.account.repository.UserRepository;
+import pl.rynski.chomiczek_workout.account.repository.UserRoleRepository;
 
 @Service
 public class UserService {

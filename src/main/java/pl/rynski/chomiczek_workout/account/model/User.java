@@ -1,10 +1,7 @@
-package pl.rynski.chomiczek_workout.model;
-
-import pl.rynski.chomiczek_workout.validation.PasswordMatches;
+package pl.rynski.chomiczek_workout.account.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +21,8 @@ public class User {
     private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
+
+    private boolean isEnabled;
 
     public User() {
     }
@@ -73,6 +72,14 @@ public class User {
 
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 
     @Override

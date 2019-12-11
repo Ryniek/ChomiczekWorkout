@@ -1,6 +1,6 @@
-package pl.rynski.chomiczek_workout.validation;
+package pl.rynski.chomiczek_workout.account.validation;
 
-import pl.rynski.chomiczek_workout.model.UserDto;
+import pl.rynski.chomiczek_workout.account.model.UserDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

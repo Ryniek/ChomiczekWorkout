@@ -6,12 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import pl.rynski.chomiczek_workout.model.User;
-import pl.rynski.chomiczek_workout.model.UserDto;
-import pl.rynski.chomiczek_workout.service.UserService;
+import pl.rynski.chomiczek_workout.account.model.User;
+import pl.rynski.chomiczek_workout.account.model.UserDto;
+import pl.rynski.chomiczek_workout.account.service.UserService;
 
 import javax.validation.Valid;
-import javax.validation.Validator;
 import java.util.List;
 
 @Controller

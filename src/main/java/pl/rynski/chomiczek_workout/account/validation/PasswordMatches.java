@@ -1,4 +1,4 @@
-package pl.rynski.chomiczek_workout.validation;
+package pl.rynski.chomiczek_workout.account.validation;
 
 
 import javax.validation.Constraint;
