@@ -8,7 +8,6 @@ public class ChomiczekWorkoutApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ChomiczekWorkoutApplication.class, args);
-        System.out.println("Siema");
     }
 
 }

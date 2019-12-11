@@ -3,6 +3,9 @@ package pl.rynski.chomiczek_workout.model;
 import pl.rynski.chomiczek_workout.validation.PasswordMatches;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,8 +15,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min = 5)
+    @Column(unique = true, nullable = false)
     private String username;
     private String password;
+    @Email(message = "Enter a valid email address.")
+    @Column(unique = true, nullable = false)
     private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
