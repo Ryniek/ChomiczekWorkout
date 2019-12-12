@@ -1,12 +1,12 @@
 package pl.rynski.chomiczek_workout.service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
+import pl.rynski.chomiczek_workout.model.Parameter;
+
+import java.time.LocalDate;
 
 public interface UserService {
-        Map<LocalDateTime, Double> getParameters(Long id, String typeOfParameter);
-        void deleteParameter(LocalDateTime date, String typeOfParameter);
-        void addParameter(Double newParameter, LocalDateTime date, String typeOfParameter);
-        void editParameter(Double newParameter, LocalDateTime date, String typeOfParameter);
+        Parameter getParameters(Long userId, LocalDate date, String typeOfParameter);
+        void deleteParameter(Long userId, LocalDate date, String typeOfParameter);
+        void addParameter(Parameter newParameter, Long userId, LocalDate date, String typeOfParameter);
+        void editParameter(Parameter newParameter, Long userId, LocalDate date, String typeOfParameter);
 }

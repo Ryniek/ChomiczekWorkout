@@ -1,9 +1,6 @@
 package pl.rynski.chomiczek_workout.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 public class Profile {
@@ -12,67 +9,101 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long user_id;
-    private Map<LocalDateTime, Double> weight;
-    private Map<LocalDateTime, Double> chestCircumference;
-    private Map<LocalDateTime, Double> armCircumference;
-    private Map<LocalDateTime, Double> forearmCircumference;
-    private Map<LocalDateTime, Double> thighCircumference;
-    private Map<LocalDateTime, Double> lowerLegCircumference;
+    private Parameter weight;
+    private Parameter chestCircumference;
+    private Parameter armCircumference;
+    private Parameter forearmCircumference;
+    private Parameter thighCircumference;
+    private Parameter lowerLegCircumference;
 
     public Profile() {
-        weight = new HashMap<>();
-        chestCircumference = new HashMap<>();
-        armCircumference = new HashMap<>();
-        forearmCircumference = new HashMap<>();
-        thighCircumference = new HashMap<>();
-        lowerLegCircumference = new HashMap<>();
     }
 
-    public Double getWeight(LocalDateTime date) {
-        return weight.get(date);
+    public Profile(Long user_id, Parameter weight, Parameter chestCircumference, Parameter armCircumference, Parameter forearmCircumference, Parameter thighCircumference, Parameter lowerLegCircumference) {
+        this.user_id = user_id;
+        this.weight = weight;
+        this.chestCircumference = chestCircumference;
+        this.armCircumference = armCircumference;
+        this.forearmCircumference = forearmCircumference;
+        this.thighCircumference = thighCircumference;
+        this.lowerLegCircumference = lowerLegCircumference;
     }
 
-    public void setWeight(LocalDateTime date, Double weight) {
-        this.weight.put(date, weight);
-    }
-    public Double getChestCircumference(LocalDateTime date) {
-        return chestCircumference.get(date);
+    public Long getId() {
+        return id;
     }
 
-    public void setChestCircumference(LocalDateTime date, Double circ) {
-        chestCircumference.put(date, circ);
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Double getArmCircumference(LocalDateTime date) {
-        return armCircumference.get(date);
+    public Long getUser_id() {
+        return user_id;
     }
 
-    public void setArmCircumference(LocalDateTime date, Double circ) {
-        armCircumference.put(date, circ);
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
-    public Double getForearmCircumference(LocalDateTime date) {
-        return forearmCircumference.get(date);
+    public Parameter getWeight() {
+        return weight;
     }
 
-    public void setForearmCircumference(LocalDateTime date, Double circ) {
-        forearmCircumference.put(date, circ);
-    }
-    public Double getThighCircumference(LocalDateTime date) {
-        return thighCircumference.get(date);
+    public void setWeight(Parameter weight) {
+        this.weight = weight;
     }
 
-    public void setThighCircumference(LocalDateTime date, Double circ) {
-        thighCircumference.put(date, circ);
-    }
-    public Double getLowerLegCircumference(LocalDateTime date) {
-        return lowerLegCircumference.get(date);
+    public Parameter getChestCircumference() {
+        return chestCircumference;
     }
 
-    public void setLowerLegCircumference(LocalDateTime date, Double circ) {
-        lowerLegCircumference.put(date, circ);
+    public void setChestCircumference(Parameter chestCircumference) {
+        this.chestCircumference = chestCircumference;
     }
 
+    public Parameter getArmCircumference() {
+        return armCircumference;
+    }
 
+    public void setArmCircumference(Parameter armCircumference) {
+        this.armCircumference = armCircumference;
+    }
 
+    public Parameter getForearmCircumference() {
+        return forearmCircumference;
+    }
+
+    public void setForearmCircumference(Parameter forearmCircumference) {
+        this.forearmCircumference = forearmCircumference;
+    }
+
+    public Parameter getThighCircumference() {
+        return thighCircumference;
+    }
+
+    public void setThighCircumference(Parameter thighCircumference) {
+        this.thighCircumference = thighCircumference;
+    }
+
+    public Parameter getLowerLegCircumference() {
+        return lowerLegCircumference;
+    }
+
+    public void setLowerLegCircumference(Parameter lowerLegCircumference) {
+        this.lowerLegCircumference = lowerLegCircumference;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", weight=" + weight +
+                ", chestCircumference=" + chestCircumference +
+                ", armCircumference=" + armCircumference +
+                ", forearmCircumference=" + forearmCircumference +
+                ", thighCircumference=" + thighCircumference +
+                ", lowerLegCircumference=" + lowerLegCircumference +
+                '}';
+    }
 }

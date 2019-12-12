@@ -1,10 +1,10 @@
 package pl.rynski.chomiczek_workout.service;
 
-import org.springframework.stereotype.Service;
+
+import pl.rynski.chomiczek_workout.model.Parameter;
 import pl.rynski.chomiczek_workout.repository.ProfileRepository;
 
-import java.time.LocalDateTime;
-import java.util.Map;
+import java.time.LocalDate;
 
 
 public class UserServiceImpl implements UserService{
@@ -17,22 +17,22 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public Map<LocalDateTime, Double> getParameters(Long id, String typeOfParameter) {
+    public Parameter getParameters(Long userId, LocalDate date, String typeOfParameter) {
         return null;
     }
 
     @Override
-    public void deleteParameter(LocalDateTime date, String typeOfParameter) {
+    public void deleteParameter(Long userId, LocalDate date, String typeOfParameter) {
 
     }
 
     @Override
-    public void addParameter(Double newParameter, LocalDateTime date, String typeOfParameter) {
+    public void addParameter(Parameter newParameter, Long userId, LocalDate date, String typeOfParameter) {
 
     }
 
     @Override
-    public void editParameter(Double newParameter, LocalDateTime date, String typeOfParameter) {
+    public void editParameter(Parameter newParameter, Long userId, LocalDate date, String typeOfParameter) {
 
     }
 }
