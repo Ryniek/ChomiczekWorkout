@@ -23,7 +23,7 @@
 
 
 <body>
- <div id="cf">
+<div id="cf">
     <img class="background1" src="../static/images/czarne.jpg" th:src="@{/images/czarne.jpg}" />
 </div>
 
@@ -56,16 +56,16 @@
 <link href="../static/styles/login.css" th:href="@{styles/login.css}"  rel="stylesheet">
 <div id="log" class="modal">
 <div class="container">
-
-	<form class="form-signin">
+	<form th:action="@{/processlogin}" method="post" class="form-signin">
         <h1 class="form-signin-heading text-muted">Zaloguj się</h1>
-		<input type="text" class="form-control" placeholder="Adres email" required="" autofocus="">
-		<input type="password" class="form-control" placeholder="Hasło" required="">
+		<input name="user" type="text" class="form-control" placeholder="Adres email/login" required="" autofocus="">
+		<input name="pass" type="password" class="form-control" placeholder="Hasło" required="">
 		<button class="btn btn-lg btn-primary btn-block" type="submit">
 			Zaloguj mnie
 		</button>
 	</form>
-    </div></div>            
+    </div>
+</div>
     
     
 <div id="reg" class="modal">
@@ -77,24 +77,24 @@
                     <div style="text-align: center;"><h3 class="panel-title">Zarejestruj się na Chomiczka!</h3></div>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <form th:action="@{/register}" th:object="${userForm}" method="post" role="form">
                                 <div class="form-group">
                                    
-                                    <input type="text" name="login" id="login" class="form-control input-sm" placeholder="Login" required>
+                                    <input th:field="*{username}" type="text" name="login" id="login" class="form-control input-sm" placeholder="Login" required>
                             </div>
                         <div class="form-group">
-                            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Adres Email" required>
+                            <input th:field="*{email}" type="email" name="email" id="email" class="form-control input-sm" placeholder="Adres Email" required>
                         </div>
 
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Hasło" required>
+                                    <input th:field="${userDto.password}" type="password" name="password" id="password" class="form-control input-sm" placeholder="Hasło" required>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Potwierdź hasło" required>
+                                    <input th:field="${userDto.confirmPassword}" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Potwierdź hasło" required>
                                 </div>
                             </div>
                         </div>
