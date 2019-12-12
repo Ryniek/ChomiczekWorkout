@@ -37,7 +37,9 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String getHome() {
+    public String getHome(Model model) {
+        model.addAttribute("userForm", new User());
+        model.addAttribute("userDto", new UserDto());
         return "index";
     }
 
@@ -46,12 +48,6 @@ public class HomeController {
         return "secret";
     }
 
-    @GetMapping("/register")
-    public String getRegister(Model model) {
-        model.addAttribute("userForm", new User());
-        model.addAttribute("userDto", new UserDto());
-        return "register";
-    }
 
     @PostMapping("/register")
     public ModelAndView registerUser(ModelAndView modelAndView, @ModelAttribute @Valid User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
