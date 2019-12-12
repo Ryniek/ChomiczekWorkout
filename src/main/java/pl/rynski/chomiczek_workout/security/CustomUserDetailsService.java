@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import pl.rynski.chomiczek_workout.model.User;
-import pl.rynski.chomiczek_workout.model.UserRole;
-import pl.rynski.chomiczek_workout.repository.UserRepository;
+import pl.rynski.chomiczek_workout.account.model.User;
+import pl.rynski.chomiczek_workout.account.model.UserRole;
+import pl.rynski.chomiczek_workout.account.repository.UserRepository;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package pl.rynski.chomiczek_workout.model;
+package pl.rynski.chomiczek_workout.account.model;
 
 import javax.persistence.*;
 import java.util.HashSet;

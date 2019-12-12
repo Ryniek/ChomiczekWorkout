@@ -1,28 +1,39 @@
 package pl.rynski.chomiczek_workout.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import pl.rynski.chomiczek_workout.model.User;
-import pl.rynski.chomiczek_workout.model.UserDto;
-import pl.rynski.chomiczek_workout.service.UserService;
+import org.springframework.web.servlet.ModelAndView;
+import pl.rynski.chomiczek_workout.account.model.ConfirmationToken;
+import pl.rynski.chomiczek_workout.account.model.User;
+import pl.rynski.chomiczek_workout.account.model.UserDto;
+import pl.rynski.chomiczek_workout.account.repository.ConfirmationTokenRepository;
+import pl.rynski.chomiczek_workout.account.repository.UserRepository;
+import pl.rynski.chomiczek_workout.account.service.EmailSenderService;
+import pl.rynski.chomiczek_workout.account.service.UserService;
 
 import javax.validation.Valid;
-import javax.validation.Validator;
 import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
 
+    private ConfirmationTokenRepository confirmationTokenRepository;
     private UserService userService;
+    private EmailSenderService emailSenderService;
+    private UserRepository userRepository;
 
     @Autowired
-    public HomeController(UserService userService) {
+    public HomeController(ConfirmationTokenRepository confirmationTokenRepository, UserService userService, EmailSenderService emailSenderService, UserRepository userRepository) {
+        this.confirmationTokenRepository = confirmationTokenRepository;
         this.userService = userService;
+        this.emailSenderService = emailSenderService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/")
@@ -43,17 +54,57 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute @Valid User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
+    public ModelAndView registerUser(ModelAndView modelAndView, @ModelAttribute @Valid User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             user.setPassword(userDto.getPassword());
             userService.addUserWithDefaultRole(user);
-            return "redirect:/";
+
+            ConfirmationToken confirmationToken = new ConfirmationToken(user);
+            confirmationTokenRepository.save(confirmationToken);
+
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setSubject("Confirm your registration!");
+            mailMessage.setFrom("chomiczekworkout@gmail.com");
+            mailMessage.setText("To confirm your account, please click here : "
+                    +"http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
+
+            emailSenderService.sendEmail(mailMessage);
+
+            modelAndView.addObject("emailId", user.getEmail());
+
+            modelAndView.setViewName("successfulRegisteration");
+
+            return modelAndView;
         }
         else {
             List<ObjectError> errors = bindingResult.getAllErrors();
             errors.forEach(err -> System.out.println(err));
-            return "redirect:/error";
+            modelAndView.addObject("message","The link is invalid or broken!");
+            modelAndView.setViewName("error");
+            return modelAndView;
         }
+    }
+
+    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
+    {
+        ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+
+        if(token != null)
+        {
+            User user = userRepository.findByUsername(token.getUser().getUsername());
+            user.setEnabled(true);
+            userRepository.save(user);
+            modelAndView.setViewName("accountVerified");
+        }
+        else
+        {
+            modelAndView.addObject("message","The link is invalid or broken!");
+            modelAndView.setViewName("error");
+        }
+
+        return modelAndView;
     }
 
     @GetMapping("/error")

@@ -1,7 +1,7 @@
-package pl.rynski.chomiczek_workout.repository;
+package pl.rynski.chomiczek_workout.account.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.rynski.chomiczek_workout.model.User;
+import pl.rynski.chomiczek_workout.account.model.User;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
