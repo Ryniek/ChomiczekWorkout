@@ -38,7 +38,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String getHome() {
-        return "indexMicha";
+        return "index";
     }
 
     @GetMapping("/secret")
