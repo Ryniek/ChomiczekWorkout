@@ -22,17 +22,20 @@ public class ConfirmationToken {
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
+    public ConfirmationToken() {
+    }
+
     public ConfirmationToken(User user) {
         this.user = user;
         createdDate = new Date();
         confirmationToken = UUID.randomUUID().toString();
     }
 
-    public long getTokenid() {
+    public Long getTokenid() {
         return tokenid;
     }
 
-    public void setTokenid(long tokenid) {
+    public void setTokenid(Long tokenid) {
         this.tokenid = tokenid;
     }
 

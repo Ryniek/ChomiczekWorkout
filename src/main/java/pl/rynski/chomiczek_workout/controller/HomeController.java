@@ -93,7 +93,7 @@ public class HomeController {
 
         if(token != null)
         {
-            User user = userRepository.findByUsername(token.getUser().getEmail());
+            User user = userRepository.findByUsername(token.getUser().getUsername());
             user.setEnabled(true);
             userRepository.save(user);
             modelAndView.setViewName("accountVerified");
