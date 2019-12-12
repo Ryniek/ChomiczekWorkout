@@ -12,6 +12,7 @@ import pl.rynski.chomiczek_workout.account.model.ConfirmationToken;
 import pl.rynski.chomiczek_workout.account.model.User;
 import pl.rynski.chomiczek_workout.account.model.UserDto;
 import pl.rynski.chomiczek_workout.account.repository.ConfirmationTokenRepository;
+import pl.rynski.chomiczek_workout.account.repository.UserRepository;
 import pl.rynski.chomiczek_workout.account.service.EmailSenderService;
 import pl.rynski.chomiczek_workout.account.service.UserService;
 
@@ -25,12 +26,14 @@ public class HomeController {
     private ConfirmationTokenRepository confirmationTokenRepository;
     private UserService userService;
     private EmailSenderService emailSenderService;
+    private UserRepository userRepository;
 
     @Autowired
-    public HomeController(ConfirmationTokenRepository confirmationTokenRepository, UserService userService, EmailSenderService emailSenderService) {
+    public HomeController(ConfirmationTokenRepository confirmationTokenRepository, UserService userService, EmailSenderService emailSenderService, UserRepository userRepository) {
         this.confirmationTokenRepository = confirmationTokenRepository;
         this.userService = userService;
         this.emailSenderService = emailSenderService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/")
@@ -51,7 +54,7 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public String registerUser(ModelAndView modelAndView, @ModelAttribute @Valid User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
+    public ModelAndView registerUser(ModelAndView modelAndView, @ModelAttribute @Valid User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             user.setPassword(userDto.getPassword());
             userService.addUserWithDefaultRole(user);
@@ -68,23 +71,29 @@ public class HomeController {
 
             emailSenderService.sendEmail(mailMessage);
 
-            return "redirect:/";
+            modelAndView.addObject("emailId", user.getEmail());
+
+            modelAndView.setViewName("successfulRegisteration");
+
+            return modelAndView;
         }
         else {
             List<ObjectError> errors = bindingResult.getAllErrors();
             errors.forEach(err -> System.out.println(err));
-            return "redirect:/error";
+            modelAndView.addObject("message","The link is invalid or broken!");
+            modelAndView.setViewName("error");
+            return modelAndView;
         }
     }
 
-/*    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
     {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
 
         if(token != null)
         {
-            User user = userRepository.findByEmailIdIgnoreCase(token.getUser().getEmailId());
+            User user = userRepository.findByUsername(token.getUser().getEmail());
             user.setEnabled(true);
             userRepository.save(user);
             modelAndView.setViewName("accountVerified");
@@ -96,7 +105,7 @@ public class HomeController {
         }
 
         return modelAndView;
-    }*/
+    }
 
     @GetMapping("/error")
     public String error() {
