@@ -1,17 +1,123 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
+       
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Title</title>
+    
+   
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    
+    <!-- Load font awesome icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="background.css" rel="stylesheet" >
+
+    
+    <title>Chomiczek Workout</title>
 </head>
 <body>
-<form th:action="@{/processlogin}" method="post">
-    <p>Login: <input type="text" name="user"></p>
-    <p>Password: <input type="password" name="pass"></p>
-    <input type="submit" value="Login">
-</form>
-    <a th:href="@{/register}">Register</a>
-    <br>
-    <a th:href="@{/secret}">Secret page</a>
-</body>
+ <div id="cf">
+    <img class="background1" src="images/czarne.jpg" />
+</div>
+
+<link href="styles/navbar.css" rel="stylesheet">
+<div class="navbar">
+<a href="index.html">Home</a>
+ <a href="#contact">Kontakt</a>
+  <a href="#aboutUs">O Nas</a>
+  <a href="#informations">Informacje</a>
+  <a href="#reg" onclick="document.getElementById('reg').style.display='block'" style="width:auto;">Rejestracja</a>
+  <a href="#log" onclick="document.getElementById('log').style.display='block'" style="width:auto;">Logowanie</a>
+</div>
+
+
+<link href="styles/iconbar.css" rel="stylesheet">
+<div class="icon-bar">
+  <a href="https://www.facebook.com/amw.gdynia/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+  <a href="https://media.makeameme.org/created/so-you-came-la2lrn.jpg" class="google" target="_blank"><i class="fa fa-google"></i></a>
+  <a href="https://github.com/Ryniek/ChomiczekWorkout" class="github" target="_blank"><i class=" fa fa-github"></i></a>
+  <!--<a href="#" class="telegram"><i class="fa fa-telegram"></i></a>
+  <a href="#" class="slack"><i class="fa fa-slack"></i></a>!-->
+</div>
+<center><div class="napis1">Zobacz jak wygląda Nasz portal: *obrazki z tabelek czy coś*</div></center>
+
+<link href="styles/scroller.css" rel="stylesheet">
+<div class="topButton">
+<button onclick="topFunction()" id="myBtn" title="topBtn"><i class="fa fa-level-up"></i></button></div>
+        
+ 
+
+<link href="styles/login.css" rel="stylesheet">
+<div id="log" class="modal">
+<div class="container">
+
+	<form class="form-signin">
+        <h1 class="form-signin-heading text-muted">Zaloguj się</h1>
+		<input type="text" class="form-control" placeholder="Adres email" required="" autofocus="">
+		<input type="password" class="form-control" placeholder="Hasło" required="">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">
+			Zaloguj mnie
+		</button>
+	</form>
+    </div></div>            
+    
+    
+<div id="reg" class="modal">
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="text-align: center;"><h3 class="panel-title">Zarejestruj się na Chomiczka!</h3></div>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                                <div class="form-group">
+                                   
+                                    <input type="text" name="login" id="login" class="form-control input-sm" placeholder="Login" required>
+                            </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Adres Email" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Hasło" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Potwierdź hasło" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" value="Zarejestruj się" class="btn btn-info btn-block">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    
+</body>          
+
+<footer class="footer">To jest stopka</footer>
+    <!-- skrypciki !-->
+    <script src="js/clickOverBox.js"></script>
+    <script src="js/scroller.js"></script>
+    
+                    
 </html>
