@@ -2,17 +2,17 @@ package pl.rynski.chomiczek_workout.service;
 
 
 import pl.rynski.chomiczek_workout.model.Parameter;
-import pl.rynski.chomiczek_workout.repository.ProfileRepository;
+import pl.rynski.chomiczek_workout.repository.UserRepository;
 
 import java.time.LocalDate;
 
 
 public class UserServiceImpl implements UserService{
 
-    private ProfileRepository profileRepository;
+    private UserRepository userRepository;
 
-    public UserServiceImpl(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
+    public UserServiceImpl(UserRepository profileRepository) {
+        this.userRepository = userRepository;
     }
 
 
