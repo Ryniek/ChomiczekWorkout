@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import pl.rynski.chomiczek_workout.model.User;
 import pl.rynski.chomiczek_workout.model.UserRole;
-import pl.rynski.chomiczek_workout.repository.UserRepository;
+import pl.rynski.chomiczek_workout.repository.AccountRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,16 +17,16 @@ import java.util.Set;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomUserDetailsService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = accountRepository.findByUsername(username);
         if(user == null) {
             throw new UsernameNotFoundException("User not found");
         }

@@ -5,17 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.rynski.chomiczek_workout.model.User;
-import pl.rynski.chomiczek_workout.service.UserService;
+import pl.rynski.chomiczek_workout.service.AccountService;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class LandingPageController {
 
-    private UserService userService;
+    private AccountService accountService;
 
     @Autowired
-    public HomeController(UserService userService) {
-        this.userService = userService;
+    public LandingPageController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     @GetMapping("/")
@@ -37,7 +37,7 @@ public class HomeController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user, Model model) {
-        userService.addUserWithDefaultRole(user);
+        accountService.addUserWithDefaultRole(user);
         return "redirect:/";
     }
 
