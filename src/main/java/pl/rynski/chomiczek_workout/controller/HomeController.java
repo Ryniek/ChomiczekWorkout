@@ -75,10 +75,8 @@ public class HomeController {
         }
         else {
             List<ObjectError> errors = bindingResult.getAllErrors();
-            errors.forEach(err -> System.out.println(err));
-            modelAndView.addObject("message","The link is invalid or broken!");
-            modelAndView.setViewName("error");
-            return modelAndView;
+            errors.forEach(err -> System.out.println(err.getDefaultMessage()));
+            return "index";
         }
     }
 
