@@ -39,7 +39,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userDetails;
     }
 
-
+    public void robcos() {
+        System.out.println("elo elo");
+    }
 
     public Set<GrantedAuthority> convertAuthorities(Set<UserRole> userRoles) {
         Set<GrantedAuthority> authorities = new HashSet<>();
