@@ -76,7 +76,8 @@ public class HomeController {
         else {
             List<ObjectError> errors = bindingResult.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
-            return "index";
+            model.addAttribute("errors", errors);
+            return "errorPage";
         }
     }
 
@@ -95,7 +96,7 @@ public class HomeController {
         else
         {
             modelAndView.addObject("message","The link is invalid or broken!");
-            modelAndView.setViewName("error");
+            modelAndView.setViewName("errorPage");
         }
 
         return modelAndView;
@@ -103,7 +104,7 @@ public class HomeController {
 
     @GetMapping("/error")
     public String error() {
-        return "error";
+        return "errorPage";
     }
 
 
