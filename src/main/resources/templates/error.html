@@ -5,21 +5,10 @@
     <title>Error</title>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Nie udało się zalogować. Wystąpiły następujące błędy:</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="error : ${errors}">
-                <td th:text="${error.getDefaultMessage()}"></td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <a th:href="@{/}">Zarejestruj się ponownie</a>
-    <br>
-    <a th:href="@{/secret}">Secret page</a>
+    <p>Nie udało się zalogować. Dane nie są poprawne. Spróbuj ponownie.</p>
+<br>
+<a th:href="@{/}">Zaloguj się ponownie</a>
+<br>
+<a th:href="@{/secret}">Secret page</a>
 </body>
 </html>
