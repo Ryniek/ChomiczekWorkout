@@ -5,6 +5,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import pl.rynski.chomiczek_workout.profile.model.*;
+import pl.rynski.chomiczek_workout.profile.modelDto.ProfileDto;
 import pl.rynski.chomiczek_workout.profile.repository.*;
 
 import java.time.LocalDate;
@@ -20,9 +21,16 @@ public class ProfileService {
         this.profileRepository = profileRepository;
     }
 
-    public Weight getProfile() {
+    public ProfileDto getProfile() {
         Optional<Profile> profile = profileRepository.findById(1L);
-        return profile.get().getWeightList().get(0);
+        ProfileDto profileDto = new ProfileDto();
+        profileDto.setWeight(profile.get().getWeightList().get(profile.get().getWeightList().size() - 1).getSize());
+        profileDto.setChestSize(profile.get().getChestSizeList().get(profile.get().getChestSizeList().size() - 1).getSize());
+        profileDto.setArmSize(profile.get().getArmSizeList().get(profile.get().getArmSizeList().size() - 1).getSize());
+        profileDto.setForearmSize(profile.get().getForearmSizeList().get(profile.get().getForearmSizeList().size() - 1).getSize());
+        profileDto.setThighSize(profile.get().getThighSizeList().get(profile.get().getThighSizeList().size() - 1).getSize());
+        profileDto.setCalfSize(profile.get().getCalfSizeList().get(profile.get().getCalfSizeList().size() - 1).getSize());
+        return profileDto;
     }
 
     @EventListener(ApplicationReadyEvent.class)

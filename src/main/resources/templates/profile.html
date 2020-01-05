@@ -5,9 +5,16 @@
     <title>Profil</title>
 </head>
 <body>
-    Twój profil:
+    <p>Twój profil:</p>
     <div>
-        Waga: <p th:text="${weight.getSize()}"></p>
+        <p th:text="'Waga: ' + ${profile.getWeight()} + ' cm'"></p>
+        <p th:text="'Obwód klatki piersiowej: ' + ${profile.getChestSize()} + ' cm'"></p>
+        <p th:text="'Obwód ramienia: ' + ${profile.getArmSize()} + ' cm'"></p>
+        <p th:text="'Obwód przedramienia: ' + ${profile.getForearmSize()} + ' cm'"></p>
+        <p th:text="'Obwód uda: ' + ${profile.getThighSize()} + ' cm'"></p>
+        <p th:text="'Obwód łydki: ' + ${profile.getCalfSize()} + ' cm'"></p>
     </div>
+
+    <button th:action="@{/updateProfile}">Zaktualizuje swoje dane</button>
 </body>
 </html>

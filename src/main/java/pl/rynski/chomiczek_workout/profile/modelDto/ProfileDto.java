@@ -8,6 +8,9 @@ public class ProfileDto {
     private double thighSize;
     private double calfSize;
 
+    public ProfileDto() {
+    }
+
     public ProfileDto(double weight, double chestSize, double armSize, double forearmSize, double thighSize, double calfSize) {
         this.weight = weight;
         this.chestSize = chestSize;

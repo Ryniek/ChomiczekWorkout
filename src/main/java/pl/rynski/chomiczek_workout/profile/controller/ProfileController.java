@@ -20,8 +20,7 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String getProfile(Model model) {
-        Weight weight = profileService.getProfile();
-        model.addAttribute("weight", weight);
+        model.addAttribute("profile", profileService.getProfile());
         return "profile";
     }
 }
