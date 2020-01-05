@@ -1,6 +1,7 @@
 package pl.rynski.chomiczek_workout.profile.modelDto;
 
-import java.time.LocalDateTime;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 
 public class ProfileDto {
     private double weight;
