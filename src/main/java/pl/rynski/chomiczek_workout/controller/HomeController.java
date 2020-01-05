@@ -50,7 +50,7 @@ public class HomeController {
 
 
     @PostMapping("/register")
-    public ModelAndView registerUser(ModelAndView modelAndView, @ModelAttribute @Valid User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
+    public String registerUser(@Valid @ModelAttribute User user, @Valid @ModelAttribute UserDto userDto, BindingResult bindingResult, Model model) {
         if(!bindingResult.hasErrors()) {
             user.setPassword(userDto.getPassword());
             userService.addUserWithDefaultRole(user);
@@ -67,18 +67,15 @@ public class HomeController {
 
             emailSenderService.sendEmail(mailMessage);
 
-            modelAndView.addObject("emailId", user.getEmail());
+            model.addAttribute("emailId", user.getEmail());
 
-            modelAndView.setViewName("successfulRegisteration");
-
-            return modelAndView;
+            return "successfulRegisteration";
         }
         else {
             List<ObjectError> errors = bindingResult.getAllErrors();
-            errors.forEach(err -> System.out.println(err));
-            modelAndView.addObject("message","The link is invalid or broken!");
-            modelAndView.setViewName("error");
-            return modelAndView;
+            errors.forEach(err -> System.out.println(err.getDefaultMessage()));
+            model.addAttribute("errors", errors);
+            return "errorRegister";
         }
     }
 
@@ -89,7 +86,7 @@ public class HomeController {
 
         if(token != null)
         {
-            User user = userRepository.findByUsername(token.getUser().getUsername());
+            User user = userRepository.findByUsernameOrEmailMyImp(token.getUser().getUsername());
             user.setEnabled(true);
             userRepository.save(user);
             modelAndView.setViewName("accountVerified");
@@ -97,15 +94,15 @@ public class HomeController {
         else
         {
             modelAndView.addObject("message","The link is invalid or broken!");
-            modelAndView.setViewName("error");
+            modelAndView.setViewName("errorRegister");
         }
 
         return modelAndView;
     }
 
     @GetMapping("/error")
-    public String error() {
-        return "error";
+    public String handleErrors() {
+        return "errorRegister";
     }
 
 

@@ -3,7 +3,7 @@ package pl.rynski.chomiczek_workout.account.model;
 import pl.rynski.chomiczek_workout.account.validation.PasswordMatches;
 import pl.rynski.chomiczek_workout.account.validation.ValidPassword;
 
-@PasswordMatches(message = "Passwords are not equal")
+@PasswordMatches
 public class UserDto {
     @ValidPassword
     private String password;

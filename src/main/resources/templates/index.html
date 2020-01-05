@@ -43,7 +43,6 @@
   <a href="https://www.facebook.com/amw.gdynia/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
   <a href="https://media.makeameme.org/created/so-you-came-la2lrn.jpg" class="google" target="_blank"><i class="fa fa-google"></i></a>
   <a href="https://github.com/Ryniek/ChomiczekWorkout" class="github" target="_blank"><i class=" fa fa-github"></i></a>
-
 </div>
 <center><div class="napis1">Zobacz jak wygląda Nasz portal: *obrazki z tabelek czy coś*</div></center>
 
@@ -55,15 +54,15 @@
 
 <link href="../static/styles/login.css" th:href="@{styles/login.css}"  rel="stylesheet">
 <div id="log" class="modal">
-<div class="container">
-	<form th:action="@{/processlogin}" method="post" class="form-signin">
-        <h1 class="form-signin-heading text-muted">Zaloguj się</h1>
-		<input name="user" type="text" class="form-control" placeholder="Adres email/login" required="" autofocus="">
-		<input name="pass" type="password" class="form-control" placeholder="Hasło" required="">
-		<button class="btn btn-lg btn-primary btn-block" type="submit">
-			Zaloguj mnie
-		</button>
-	</form>
+    <div class="container">
+        <form th:action="@{/processlogin}" method="post" class="form-signin">
+            <h1 class="form-signin-heading text-muted">Zaloguj się</h1>
+            <input name="user" type="text" class="form-control" placeholder="Adres email/login" required="" autofocus="">
+            <input name="pass" type="password" class="form-control" placeholder="Hasło" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                Zaloguj mnie
+            </button>
+        </form>
     </div>
 </div>
     
@@ -78,14 +77,12 @@
                 </div>
                 <div class="panel-body">
                     <form th:action="@{/register}" th:object="${userForm}" method="post" role="form">
-                                <div class="form-group">
-                                   
-                                    <input th:field="*{username}" type="text" name="login" id="login" class="form-control input-sm" placeholder="Login" required>
-                            </div>
+                        <div class="form-group">
+                            <input th:field="*{username}" type="text" name="login" id="login" class="form-control input-sm" placeholder="Login" required>
+                        </div>
                         <div class="form-group">
                             <input th:field="*{email}" type="email" name="email" id="email" class="form-control input-sm" placeholder="Adres Email" required>
                         </div>
-
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
@@ -100,8 +97,10 @@
                         </div>
 
                         <input type="submit" value="Zarejestruj się" class="btn btn-info btn-block">
-
                     </form>
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+                    </ul>
                 </div>
             </div>
         </div>

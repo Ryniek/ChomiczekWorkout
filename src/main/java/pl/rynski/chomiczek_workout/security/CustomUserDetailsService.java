@@ -39,6 +39,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userDetails;
     }
 
+
+
     public Set<GrantedAuthority> convertAuthorities(Set<UserRole> userRoles) {
         Set<GrantedAuthority> authorities = new HashSet<>();
         for(UserRole ur: userRoles) {

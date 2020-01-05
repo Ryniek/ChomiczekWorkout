@@ -18,7 +18,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 public @interface ValidPassword {
 
-    String message() default "Password must contain at least 8 characters and minimum 1 digit";
+    String message() default "Hasło musi zawierać conajmniej 8 znaków w tym jedną cyfrę";
 
     Class<?>[] groups() default {};
 

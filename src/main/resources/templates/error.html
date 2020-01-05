@@ -5,10 +5,10 @@
     <title>Error</title>
 </head>
 <body>
-    <p th:text="${message}">JAKIS BLAD</p>
-    <br>
-    <a th:href="@{/}">Login</a>
-    <br>
-    <a th:href="@{/secret}">Secret page</a>
+    <p>Nie udało się zalogować. Dane nie są poprawne. Spróbuj ponownie.</p>
+<br>
+<a th:href="@{/}">Zaloguj się ponownie</a>
+<br>
+<a th:href="@{/secret}">Secret page</a>
 </body>
 </html>
