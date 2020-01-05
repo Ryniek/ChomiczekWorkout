@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zaktualizuj profil</title>
+</head>
+<body>
+    <p>Wprowadź aktualne parametry swojego ciała: </p>
+    <form th:action="@{/updateProfile}" th:object="${profile}" method="post">
+        <p>Waga: <input type="text" th:field="${profile.weight}"/></p>
+        <p>Obwód klatki piersiowej: <input type="text" th:field="${profile.chestSize}"></p>
+        <p>Obwód ramienia: <input type="text" th:field="${profile.armSize}"></p>
+        <p>Obwód przedramienia: <input type="text" th:field="${profile.forearmSize}"></p>
+        <p>Obwód uda: <input type="text" th:field="${profile.thighSize}"></p>
+        <p>Obwód łydki: <input type="text" th:field="${profile.calfSize}"></p>
+        <input type="submit">
+    </form>
+</body>
+</html>

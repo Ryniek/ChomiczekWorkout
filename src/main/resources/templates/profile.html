@@ -15,6 +15,6 @@
         <p th:text="'Obwód łydki: ' + ${profile.getCalfSize()} + ' cm'"></p>
     </div>
 
-    <button th:action="@{/updateProfile}">Zaktualizuje swoje dane</button>
+    <button><a th:href="@{/updateProfile}">Zaktualizuje swoje dane</a></button>
 </body>
 </html>

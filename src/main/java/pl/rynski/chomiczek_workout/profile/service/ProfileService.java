@@ -22,15 +22,27 @@ public class ProfileService {
     }
 
     public ProfileDto getProfile() {
-        Optional<Profile> profile = profileRepository.findById(1L);
+        Profile profile = profileRepository.findById(1L).get();
         ProfileDto profileDto = new ProfileDto();
-        profileDto.setWeight(profile.get().getWeightList().get(profile.get().getWeightList().size() - 1).getSize());
-        profileDto.setChestSize(profile.get().getChestSizeList().get(profile.get().getChestSizeList().size() - 1).getSize());
-        profileDto.setArmSize(profile.get().getArmSizeList().get(profile.get().getArmSizeList().size() - 1).getSize());
-        profileDto.setForearmSize(profile.get().getForearmSizeList().get(profile.get().getForearmSizeList().size() - 1).getSize());
-        profileDto.setThighSize(profile.get().getThighSizeList().get(profile.get().getThighSizeList().size() - 1).getSize());
-        profileDto.setCalfSize(profile.get().getCalfSizeList().get(profile.get().getCalfSizeList().size() - 1).getSize());
+        profileDto.setWeight(profile.getWeightList().get(profile.getWeightList().size() - 1).getSize());
+        profileDto.setChestSize(profile.getChestSizeList().get(profile.getChestSizeList().size() - 1).getSize());
+        profileDto.setArmSize(profile.getArmSizeList().get(profile.getArmSizeList().size() - 1).getSize());
+        profileDto.setForearmSize(profile.getForearmSizeList().get(profile.getForearmSizeList().size() - 1).getSize());
+        profileDto.setThighSize(profile.getThighSizeList().get(profile.getThighSizeList().size() - 1).getSize());
+        profileDto.setCalfSize(profile.getCalfSizeList().get(profile.getCalfSizeList().size() - 1).getSize());
         return profileDto;
+    }
+
+    public void updateProfile(ProfileDto profileDto) {
+        Profile profile = profileRepository.findById(1L).get();
+        profile.getWeightList().add(new Weight(profile, profileDto.getWeight()));
+        profile.getChestSizeList().add(new ChestSize(profile, profileDto.getChestSize()));
+        profile.getArmSizeList().add(new ArmSize(profile, profileDto.getArmSize()));
+        profile.getCalfSizeList().add(new CalfSize(profile, profileDto.getCalfSize()));
+        profile.getThighSizeList().add(new ThighSize(profile, profileDto.getThighSize()));
+        profile.getForearmSizeList().add(new ForearmSize(profile, profileDto.getForearmSize()));
+        profile.getDateList().add(new UpdateDate(profile, LocalDate.now()));
+        profileRepository.save(profile);
     }
 
     @EventListener(ApplicationReadyEvent.class)
