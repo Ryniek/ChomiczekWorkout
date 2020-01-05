@@ -17,10 +17,10 @@
         <p th:unless="${profile.forearmSize == null}" th:text="'Obwód przedramienia: ' + ${profile?.forearmSize} + ' cm'"></p>
         <p th:if="${profile.thighSize == null}">Obwód uda: Zaktualizuj dane</p>
         <p th:unless="${profile.thighSize == null}" th:text="'Obwód uda: ' + ${profile?.thighSize} + ' cm'"></p>
-        <p th:if="${profile.thighSize == null}">Obwód uda: Zaktualizuj dane</p>
-        <p th:unless="${profile.thighSize == null}" th:text="'Obwód uda: ' + ${profile?.thighSize} + ' cm'"></p>
-        <p th:text="'Obwód łydki: ' + ${profile?.calfSize} + ' cm'"></p>
-        <p th:text="'Ostatnia aktualizacja: ' + ${profile?.lastUpdate}"></p>
+        <p th:if="${profile.calfSize == null}">Obwód łydki:: Zaktualizuj dane</p>
+        <p th:unless="${profile.calfSize == null}" th:text="'Obwód łydki: ' + ${profile?.calfSize} + ' cm'"></p>
+        <p th:if="${profile.lastUpdate == null}">Ostatnia aktualizacja:: Zaktualizuj dane</p>
+        <p th:unless="${profile.lastUpdate == null}" th:text="'Ostatnia aktualizacja: ' + ${profile?.lastUpdate}"></p>
     </div>
 
     <button><a th:href="@{/updateProfile}">Zaktualizuj swoje dane</a></button>
