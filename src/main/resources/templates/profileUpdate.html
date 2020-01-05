@@ -7,12 +7,12 @@
 <body>
     <p>Wprowadź aktualne parametry swojego ciała: </p>
     <form th:action="@{/updateProfile}" th:object="${profile}" method="post">
-        <p>Waga: <input type="text" th:field="${profile.weight}"/></p>
-        <p>Obwód klatki piersiowej: <input type="text" th:field="${profile.chestSize}"></p>
-        <p>Obwód ramienia: <input type="text" th:field="${profile.armSize}"></p>
-        <p>Obwód przedramienia: <input type="text" th:field="${profile.forearmSize}"></p>
-        <p>Obwód uda: <input type="text" th:field="${profile.thighSize}"></p>
-        <p>Obwód łydki: <input type="text" th:field="${profile.calfSize}"></p>
+        <p>Waga[1-250]: <input type="text" th:field="${profile.weight}"/></p>
+        <p>Obwód klatki piersiowej[1-150]: <input type="text" th:field="${profile.chestSize}"></p>
+        <p>Obwód ramienia[1-80]: <input type="text" th:field="${profile.armSize}"></p>
+        <p>Obwód przedramienia[1-50]: <input type="text" th:field="${profile.forearmSize}"></p>
+        <p>Obwód uda[1-100]: <input type="text" th:field="${profile.thighSize}"></p>
+        <p>Obwód łydki[1-50]: <input type="text" th:field="${profile.calfSize}"></p>
         <input type="submit">
         <p th:text="${errorMessage?.getError()}"></p>
     </form>

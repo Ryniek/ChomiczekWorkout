@@ -46,8 +46,9 @@ public class ProfileController {
             return "redirect:/profile";
         } else {
             List<ObjectError> errors = bindingResult.getAllErrors();
-            ObjectError error = errors.get(0);
-            ErrorMessage errorMessage = new ErrorMessage(error.getDefaultMessage());
+            StringBuilder errorMsg = new StringBuilder();
+            errors.forEach(error1 -> errorMsg.append(error1.getDefaultMessage()).append('\n'));
+            ErrorMessage errorMessage = new ErrorMessage(errorMsg.toString());
             redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
             return "redirect:/updateProfile";
         }
