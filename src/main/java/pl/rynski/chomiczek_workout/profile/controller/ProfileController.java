@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.rynski.chomiczek_workout.profile.modelDto.ErrorMessage;
-import pl.rynski.chomiczek_workout.profile.modelDto.ProfileDto;
-import pl.rynski.chomiczek_workout.profile.service.ProfileService;
 
 import javax.validation.Valid;
 import java.util.List;
