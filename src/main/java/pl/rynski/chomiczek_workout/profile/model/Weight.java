@@ -6,17 +6,17 @@ import javax.persistence.*;
 public class Weight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_weight")
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "profile_id", nullable = false)
+    @JoinColumn
     private Profile profile;
     private double size;
 
     public Weight() {
     }
 
-    public Weight(double size) {
+    public Weight(Profile profile, double size) {
+        this.profile = profile;
         this.size = size;
     }
 

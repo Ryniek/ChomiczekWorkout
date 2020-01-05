@@ -6,14 +6,17 @@ import javax.persistence.*;
 public class ArmSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "arm_size_id")
     private Long id;
+    @ManyToOne
+    @JoinColumn
+    private Profile profile;
     private double size;
 
     public ArmSize() {
     }
 
-    public ArmSize(double size) {
+    public ArmSize(Profile profile, double size) {
+        this.profile = profile;
         this.size = size;
     }
 
@@ -23,6 +26,14 @@ public class ArmSize {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public double getSize() {

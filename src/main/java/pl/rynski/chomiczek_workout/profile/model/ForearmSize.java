@@ -6,14 +6,17 @@ import javax.persistence.*;
 public class ForearmSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "forearm_size_id")
     private Long id;
+    @ManyToOne
+    @JoinColumn
+    private Profile profile;
     private double size;
 
     public ForearmSize() {
     }
 
-    public ForearmSize(double size) {
+    public ForearmSize(Profile profile, double size) {
+        this.profile = profile;
         this.size = size;
     }
 
@@ -23,6 +26,14 @@ public class ForearmSize {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public double getSize() {

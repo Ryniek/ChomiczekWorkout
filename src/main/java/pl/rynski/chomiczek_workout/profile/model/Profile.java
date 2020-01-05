@@ -2,6 +2,7 @@ package pl.rynski.chomiczek_workout.profile.model;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,28 +12,26 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long userId;
-    @OneToMany(mappedBy = "profile")
-    private List<Weight> weightList;
-    @OneToMany
-    @JoinColumn(name = "profile_id", referencedColumnName = "chest_size_id")
-    private List<ChestSize> chestSizeList;
-    @OneToMany
-    @JoinColumn(name = "profile_id", referencedColumnName = "arm_size_id")
-    private List<ArmSize> armSizeList;
-    @OneToMany
-    @JoinColumn(name = "profile_id", referencedColumnName = "forearm_size_id")
-    private List<ForearmSize> forearmSizeList;
-    @OneToMany
-    @JoinColumn(name = "profile_id", referencedColumnName = "thigh_size_id")
-    private List<ThighSize> thighSizeList;
-    @OneToMany
-    @JoinColumn(name = "profile_id", referencedColumnName = "calf_size_id")
-    private List<CalfSize> calfSizeList;
-    @OneToMany
-    @JoinColumn(name = "profile_id", referencedColumnName = "weight_id")
-    private List<UpdateDate> dateList;
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<Weight> weightList = new ArrayList<>();
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<ChestSize> chestSizeList = new ArrayList<>();
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<ArmSize> armSizeList = new ArrayList<>();
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<ForearmSize> forearmSizeList = new ArrayList<>();
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<ThighSize> thighSizeList = new ArrayList<>();
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<CalfSize> calfSizeList = new ArrayList<>();
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<UpdateDate> dateList = new ArrayList<>();
 
     public Profile() {
+    }
+
+    public Profile(Long userId) {
+        this.userId = userId;
     }
 
     public Long getId() {
@@ -105,5 +104,20 @@ public class Profile {
 
     public void setDateList(List<UpdateDate> dateList) {
         this.dateList = dateList;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", weightList=" + weightList +
+                ", chestSizeList=" + chestSizeList +
+                ", armSizeList=" + armSizeList +
+                ", forearmSizeList=" + forearmSizeList +
+                ", thighSizeList=" + thighSizeList +
+                ", calfSizeList=" + calfSizeList +
+                ", dateList=" + dateList +
+                '}';
     }
 }

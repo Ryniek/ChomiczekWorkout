@@ -4,17 +4,19 @@ import javax.persistence.*;
 
 @Entity
 public class ChestSize {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "chest_size_id")
     private Long id;
+    @ManyToOne
+    @JoinColumn
+    private Profile profile;
     private double size;
 
     public ChestSize() {
     }
 
-    public ChestSize(double size) {
+    public ChestSize(Profile profile, double size) {
+        this.profile = profile;
         this.size = size;
     }
 
@@ -24,6 +26,14 @@ public class ChestSize {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public double getSize() {

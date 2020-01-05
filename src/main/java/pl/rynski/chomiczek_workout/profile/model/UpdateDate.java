@@ -5,17 +5,19 @@ import java.time.LocalDate;
 
 @Entity
 public class UpdateDate {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "update_date_id")
     private Long id;
+    @ManyToOne
+    @JoinColumn
+    private Profile profile;
     private LocalDate updateDate;
 
     public UpdateDate() {
     }
 
-    public UpdateDate(LocalDate updateDate) {
+    public UpdateDate(Profile profile, LocalDate updateDate) {
+        this.profile = profile;
         this.updateDate = updateDate;
     }
 
@@ -25,6 +27,14 @@ public class UpdateDate {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public LocalDate getUpdateDate() {
