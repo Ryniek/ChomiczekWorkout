@@ -23,6 +23,7 @@
 
 
 <body>
+<div class="parent-div"><div class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></div></div>
 <div id="cf">
     <img class="background1" src="../static/images/czarne.jpg" th:src="@{/images/czarne.jpg}" />
 </div>
@@ -107,7 +108,6 @@
     </div>
 </div>
     </div>
-    
     
 </body>          
 

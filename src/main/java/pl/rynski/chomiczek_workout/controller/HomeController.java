@@ -2,6 +2,8 @@ package pl.rynski.chomiczek_workout.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,8 @@ import pl.rynski.chomiczek_workout.account.repository.UserRepository;
 import pl.rynski.chomiczek_workout.account.service.EmailSenderService;
 import pl.rynski.chomiczek_workout.account.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -98,6 +102,23 @@ public class HomeController {
         }
 
         return modelAndView;
+    }
+
+    @GetMapping("/login-error")
+    public String getHome(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        String errorMessage = null;
+        if (session != null) {
+            AuthenticationException ex = (AuthenticationException) session
+                    .getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+            if (ex != null) {
+                errorMessage = ex.getMessage();
+            }
+        }
+        model.addAttribute("errorMessage", errorMessage);
+        model.addAttribute("userForm", new User());
+        model.addAttribute("userDto", new UserDto());
+        return "indexError";
     }
 
     @GetMapping("/error")

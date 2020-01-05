@@ -7,6 +7,7 @@ import pl.rynski.chomiczek_workout.account.model.User;
 import pl.rynski.chomiczek_workout.account.model.UserRole;
 import pl.rynski.chomiczek_workout.account.repository.UserRepository;
 import pl.rynski.chomiczek_workout.account.repository.UserRoleRepository;
+import pl.rynski.chomiczek_workout.profile.service.ProfileService;
 
 @Service
 public class UserService {
@@ -15,12 +16,14 @@ public class UserService {
     private UserRepository userRepository;
     private UserRoleRepository userRoleRepository;
     private PasswordEncoder passwordEncoder;
+    private ProfileService profileService;
 
     @Autowired
-    public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder, ProfileService profileService) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.profileService = profileService;
     }
 
     public void addUserWithDefaultRole(User user) {
@@ -29,5 +32,6 @@ public class UserService {
         String passHash = passwordEncoder.encode(user.getPassword());
         user.setPassword(passHash);
         userRepository.save(user);
+        profileService.createProfile(user.getId());
     }
 }

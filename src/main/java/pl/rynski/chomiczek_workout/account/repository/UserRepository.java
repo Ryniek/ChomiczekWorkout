@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT * FROM user WHERE user.username = :userEmail OR user.email = :userEmail LIMIT 1", nativeQuery = true)
     User findByUsernameOrEmailMyImp(@Param("userEmail")String userEmail);
+
+    User findByUsername(String username);
 }
