@@ -8,6 +8,7 @@ import pl.rynski.chomiczek_workout.profile.model.*;
 import pl.rynski.chomiczek_workout.profile.repository.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 public class ProfileService {
@@ -19,7 +20,13 @@ public class ProfileService {
         this.profileRepository = profileRepository;
     }
 
-    private Profile addProfile() {
+    public Weight getProfile() {
+        Optional<Profile> profile = profileRepository.findById(1L);
+        return profile.get().getWeightList().get(0);
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void addInitialProfile() {
         Profile profile = new Profile(1L);
         profile.getWeightList().add(new Weight(profile, 80L));
         profile.getChestSizeList().add(new ChestSize(profile, 100L));
@@ -29,12 +36,6 @@ public class ProfileService {
         profile.getForearmSizeList().add(new ForearmSize(profile, 35L));
         profile.getDateList().add(new UpdateDate(profile, LocalDate.now()));
         profileRepository.save(profile);
-        return profile;
     }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void initializeMethod() {
-        Profile profile = addProfile();
-        System.out.println(profile);
-    }
 }

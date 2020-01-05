@@ -6,4 +6,5 @@ import pl.rynski.chomiczek_workout.profile.model.Profile;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
+
 }
