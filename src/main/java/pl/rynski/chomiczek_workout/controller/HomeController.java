@@ -50,7 +50,7 @@ public class HomeController {
 
 
     @PostMapping("/register")
-    public ModelAndView registerUser(ModelAndView modelAndView, @ModelAttribute @Valid User user, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) {
+    public String registerUser(@Valid @ModelAttribute User user, @Valid @ModelAttribute UserDto userDto, BindingResult bindingResult, Model model) {
         if(!bindingResult.hasErrors()) {
             user.setPassword(userDto.getPassword());
             userService.addUserWithDefaultRole(user);
@@ -67,11 +67,9 @@ public class HomeController {
 
             emailSenderService.sendEmail(mailMessage);
 
-            modelAndView.addObject("emailId", user.getEmail());
+            model.addAttribute("emailId", user.getEmail());
 
-            modelAndView.setViewName("successfulRegisteration");
-
-            return modelAndView;
+            return "successfulRegisteration";
         }
         else {
             List<ObjectError> errors = bindingResult.getAllErrors();

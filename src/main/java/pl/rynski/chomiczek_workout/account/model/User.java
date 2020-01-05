@@ -12,11 +12,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 5)
+    @Size(min = 5, message = "Login musi posiadać conajmniej 5 znaków")
     @Column(unique = true, nullable = false)
     private String username;
     private String password;
-    @Email(message = "Enter a valid email address.")
+    @Email(message = "Email nie jest poprawny")
     @Column(unique = true, nullable = false)
     private String email;
     @ManyToMany(fetch = FetchType.EAGER)
