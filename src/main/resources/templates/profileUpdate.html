@@ -14,6 +14,7 @@
         <p>Obwód uda: <input type="text" th:field="${profile.thighSize}"></p>
         <p>Obwód łydki: <input type="text" th:field="${profile.calfSize}"></p>
         <input type="submit">
+        <p th:text="${errorMessage?.getError()}"></p>
     </form>
     <button><a th:href="@{/profile}">Cofnij do poprzedniej strony</a></button>
 </body>
