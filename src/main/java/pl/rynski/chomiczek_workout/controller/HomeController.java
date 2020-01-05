@@ -41,17 +41,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String getHome(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession(false);
-        String errorMessage = null;
-        if (session != null) {
-            AuthenticationException ex = (AuthenticationException) session
-                    .getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-            if (ex != null) {
-                errorMessage = ex.getMessage();
-            }
-        }
-        model.addAttribute("errorMessage", errorMessage);
+    public String getHome(Model model) {
         model.addAttribute("userForm", new User());
         model.addAttribute("userDto", new UserDto());
         return "index";
@@ -112,6 +102,23 @@ public class HomeController {
         }
 
         return modelAndView;
+    }
+
+    @GetMapping("/login-error")
+    public String getHome(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        String errorMessage = null;
+        if (session != null) {
+            AuthenticationException ex = (AuthenticationException) session
+                    .getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+            if (ex != null) {
+                errorMessage = ex.getMessage();
+            }
+        }
+        model.addAttribute("errorMessage", errorMessage);
+        model.addAttribute("userForm", new User());
+        model.addAttribute("userDto", new UserDto());
+        return "indexError";
     }
 
     @GetMapping("/error")

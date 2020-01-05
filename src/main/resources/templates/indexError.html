@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chomiczek workout</title>
+</head>
+<body>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
@@ -23,6 +30,7 @@
 
 
 <body>
+<div class="parent-div"><div class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></div></div>
 <div id="cf">
     <img class="background1" src="../static/images/czarne.jpg" th:src="@{/images/czarne.jpg}" />
 </div>
@@ -108,13 +116,14 @@
     </div>
 </div>
 
-
 </body>
 
-<footer class="footer">        <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>To jest stopka</footer>
+<footer class="footer">To jest stopka</footer>
 <!-- skrypciki !-->
 <script src="../static/js/clickOverBox.js" th:src="@{/js/clickOverBox.js}"></script>
 <script src="../static/js/scroller.js" th:src="@{/js/clickOverBox.js}"></script>
 
 
+</html>
+</body>
 </html>
