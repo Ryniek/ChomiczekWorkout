@@ -1,5 +1,7 @@
 package pl.rynski.chomiczek_workout.profile.modelDto;
 
+import java.time.LocalDateTime;
+
 public class ProfileDto {
     private double weight;
     private double chestSize;
@@ -7,17 +9,9 @@ public class ProfileDto {
     private double forearmSize;
     private double thighSize;
     private double calfSize;
+    private String lastUpdate;
 
     public ProfileDto() {
-    }
-
-    public ProfileDto(double weight, double chestSize, double armSize, double forearmSize, double thighSize, double calfSize) {
-        this.weight = weight;
-        this.chestSize = chestSize;
-        this.armSize = armSize;
-        this.forearmSize = forearmSize;
-        this.thighSize = thighSize;
-        this.calfSize = calfSize;
     }
 
     public double getWeight() {
@@ -66,5 +60,13 @@ public class ProfileDto {
 
     public void setCalfSize(double calfSize) {
         this.calfSize = calfSize;
+    }
+
+    public String getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }

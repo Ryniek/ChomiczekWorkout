@@ -1,7 +1,8 @@
 package pl.rynski.chomiczek_workout.profile.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class UpdateDate {
@@ -11,12 +12,12 @@ public class UpdateDate {
     @ManyToOne
     @JoinColumn
     private Profile profile;
-    private LocalDate updateDate;
+    private LocalDateTime updateDate;
 
     public UpdateDate() {
     }
 
-    public UpdateDate(Profile profile, LocalDate updateDate) {
+    public UpdateDate(Profile profile, LocalDateTime updateDate) {
         this.profile = profile;
         this.updateDate = updateDate;
     }
@@ -37,11 +38,11 @@ public class UpdateDate {
         this.profile = profile;
     }
 
-    public LocalDate getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(LocalDate updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
 }

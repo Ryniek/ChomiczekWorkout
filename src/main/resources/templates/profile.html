@@ -7,14 +7,20 @@
 <body>
     <p>Twój profil:</p>
     <div>
-        <p th:text="'Waga: ' + ${profile.getWeight()} + ' cm'"></p>
-        <p th:text="'Obwód klatki piersiowej: ' + ${profile.getChestSize()} + ' cm'"></p>
-        <p th:text="'Obwód ramienia: ' + ${profile.getArmSize()} + ' cm'"></p>
-        <p th:text="'Obwód przedramienia: ' + ${profile.getForearmSize()} + ' cm'"></p>
-        <p th:text="'Obwód uda: ' + ${profile.getThighSize()} + ' cm'"></p>
-        <p th:text="'Obwód łydki: ' + ${profile.getCalfSize()} + ' cm'"></p>
+        <p th:text="'Waga: ' + ${profile?.getWeight()} + ' cm'"></p>
+        <p th:text="'Obwód klatki piersiowej: ' + ${profile?.getChestSize()} + ' cm'"></p>
+        <p th:text="'Obwód ramienia: ' + ${profile?.getArmSize()} + ' cm'"></p>
+        <p th:text="'Obwód przedramienia: ' + ${profile?.getForearmSize()} + ' cm'"></p>
+        <p th:text="'Obwód uda: ' + ${profile?.getThighSize()} + ' cm'"></p>
+        <p th:text="'Obwód łydki: ' + ${profile?.getCalfSize()} + ' cm'"></p>
+        <p th:text="'Ostatnia aktualizacja: ' + ${profile.getLastUpdate()}"></p>
     </div>
 
-    <button><a th:href="@{/updateProfile}">Zaktualizuje swoje dane</a></button>
+    <button><a th:href="@{/updateProfile}">Zaktualizuj swoje dane</a></button>
+    <br>
+    <br>
+    <form action="logmeout" th:action="@{/logmeout}" method="post">
+        <input type="submit" value="Wyloguj"/>
+    </form>
 </body>
 </html>
