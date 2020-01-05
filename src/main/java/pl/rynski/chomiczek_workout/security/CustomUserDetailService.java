@@ -1,5 +1,6 @@
 package pl.rynski.chomiczek_workout.security;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,27 +16,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailService implements UserDetailsService {
 
     private UserRepository userRepository;
 
     @Autowired
-    public CustomUserDetailsService(UserRepository userRepository) {
+    public CustomUserDetailService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
+        User user = userRepository.findByUsernameOrEmailMyImp(userEmail);
         if(user == null) {
             throw new UsernameNotFoundException("User not found");
         }
         org.springframework.security.core.userdetails.User userDetails =
-            new org.springframework.security.core.userdetails.User(
-                    user.getUsername(),
-                    user.getPassword(),
-                    convertAuthorities(user.getRoles())
-            );
+                new org.springframework.security.core.userdetails.User(
+                        user.getUsername(),
+                        user.getPassword(),
+                        convertAuthorities(user.getRoles())
+                );
         return userDetails;
     }
 
