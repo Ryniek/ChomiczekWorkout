@@ -7,6 +7,7 @@ import pl.rynski.chomiczek_workout.account.model.User;
 import pl.rynski.chomiczek_workout.account.model.UserRole;
 import pl.rynski.chomiczek_workout.account.repository.UserRepository;
 import pl.rynski.chomiczek_workout.account.repository.UserRoleRepository;
+import pl.rynski.chomiczek_workout.profile.service.ProfileService;
 
 @Service
 public class UserService {
