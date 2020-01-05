@@ -1,12 +1,16 @@
 package pl.rynski.chomiczek_workout.profile.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import pl.rynski.chomiczek_workout.account.repository.UserRepository;
 import pl.rynski.chomiczek_workout.profile.model.*;
 import pl.rynski.chomiczek_workout.profile.modelDto.ProfileDto;
 import pl.rynski.chomiczek_workout.profile.repository.*;
 
-import java.time.LocalDate;
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,14 +18,16 @@ import java.time.format.DateTimeFormatter;
 public class ProfileService {
 
     private ProfileRepository profileRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public ProfileService(ProfileRepository profileRepository) {
+    public ProfileService(ProfileRepository profileRepository, UserRepository userRepository) {
         this.profileRepository = profileRepository;
+        this.userRepository = userRepository;
     }
 
     public ProfileDto getProfile() {
-        Profile profile = profileRepository.findById(1L).get();
+        Profile profile = profileRepository.findById(getIdOfActiveUser()).get();
         ProfileDto profileDto = new ProfileDto();
         if(!profile.getWeightList().isEmpty()) {
             profileDto.setWeight(profile.getWeightList().get(profile.getWeightList().size() - 1).getSize());
@@ -30,10 +36,22 @@ public class ProfileService {
             profileDto.setForearmSize(profile.getForearmSizeList().get(profile.getForearmSizeList().size() - 1).getSize());
             profileDto.setThighSize(profile.getThighSizeList().get(profile.getThighSizeList().size() - 1).getSize());
             profileDto.setCalfSize(profile.getCalfSizeList().get(profile.getCalfSizeList().size() - 1).getSize());
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
             profileDto.setLastUpdate(LocalDateTime.now().format(formatter));
         }
         return profileDto;
+    }
+
+    private Long getIdOfActiveUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Long id = userRepository.findByUsername(username).getId();
+        return id;
     }
 
     public void createProfile(Long id) {
@@ -42,7 +60,7 @@ public class ProfileService {
     }
 
     public void updateProfile(ProfileDto profileDto) {
-        Profile profile = profileRepository.findById(1L).get();
+        Profile profile = profileRepository.findById(getIdOfActiveUser()).get();
         profile.getWeightList().add(new Weight(profile, profileDto.getWeight()));
         profile.getChestSizeList().add(new ChestSize(profile, profileDto.getChestSize()));
         profile.getArmSizeList().add(new ArmSize(profile, profileDto.getArmSize()));
@@ -52,18 +70,5 @@ public class ProfileService {
         profile.getDateList().add(new UpdateDate(profile, LocalDateTime.now()));
         profileRepository.save(profile);
     }
-
-/*    @EventListener(ApplicationReadyEvent.class)
-    public void addInitialProfile() {
-        Profile profile = new Profile(1L);
-        profile.getWeightList().add(new Weight(profile, 80L));
-        profile.getChestSizeList().add(new ChestSize(profile, 100L));
-        profile.getArmSizeList().add(new ArmSize(profile, 60L));
-        profile.getCalfSizeList().add(new CalfSize(profile, 40L));
-        profile.getThighSizeList().add(new ThighSize(profile, 60L));
-        profile.getForearmSizeList().add(new ForearmSize(profile, 35L));
-        profile.getDateList().add(new UpdateDate(profile, LocalDate.now()));
-        profileRepository.save(profile);
-    }*/
 
 }
