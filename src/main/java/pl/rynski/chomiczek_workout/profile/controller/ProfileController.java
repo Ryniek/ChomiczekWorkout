@@ -34,7 +34,8 @@ public class ProfileController {
 
     @GetMapping("/updateProfile")
     public String getUpdateSite(@ModelAttribute("errorMessage") ErrorMessage errorMessage, Model model) {
-        model.addAttribute("profile", new ProfileDto());
+        model.addAttribute("profile", profileService.getProfile());
+        model.addAttribute("profileDto", new ProfileDto());
         model.addAttribute("errorMessage", errorMessage);
         return "profileUpdate";
     }

@@ -7,13 +7,20 @@
 <body>
     <p>Twój profil:</p>
     <div>
-        <p th:text="'Waga: ' + ${profile?.getWeight()} + ' kg'"></p>
-        <p th:text="'Obwód klatki piersiowej: ' + ${profile?.getChestSize()} + ' cm'"></p>
-        <p th:text="'Obwód ramienia: ' + ${profile?.getArmSize()} + ' cm'"></p>
-        <p th:text="'Obwód przedramienia: ' + ${profile?.getForearmSize()} + ' cm'"></p>
-        <p th:text="'Obwód uda: ' + ${profile?.getThighSize()} + ' cm'"></p>
-        <p th:text="'Obwód łydki: ' + ${profile?.getCalfSize()} + ' cm'"></p>
-        <p th:text="'Ostatnia aktualizacja: ' + ${profile.getLastUpdate()}"></p>
+        <p th:if="${profile.weight == null}">Waga: Zaktualizuj dane</p>
+        <p th:unless="${profile.weight == null}" th:text="'Waga: ' + ${profile?.weight} + ' kg'"></p>
+        <p th:if="${profile.chestSize == null}">Obwód klatki piersiowej: Zaktualizuj dane</p>
+        <p th:unless="${profile.chestSize == null}" th:text="'Obwód klatki piersiowej: ' + ${profile?.chestSize} + ' cm'"></p>
+        <p th:if="${profile.armSize == null}">Obwód ramienia: Zaktualizuj dane</p>
+        <p th:unless="${profile.armSize == null}" th:text="'Obwód ramienia: ' + ${profile?.armSize} + ' cm'"></p>
+        <p th:if="${profile.forearmSize == null}">Obwód przedramienia: Zaktualizuj dane</p>
+        <p th:unless="${profile.forearmSize == null}" th:text="'Obwód przedramienia: ' + ${profile?.forearmSize} + ' cm'"></p>
+        <p th:if="${profile.thighSize == null}">Obwód uda: Zaktualizuj dane</p>
+        <p th:unless="${profile.thighSize == null}" th:text="'Obwód uda: ' + ${profile?.thighSize} + ' cm'"></p>
+        <p th:if="${profile.thighSize == null}">Obwód uda: Zaktualizuj dane</p>
+        <p th:unless="${profile.thighSize == null}" th:text="'Obwód uda: ' + ${profile?.thighSize} + ' cm'"></p>
+        <p th:text="'Obwód łydki: ' + ${profile?.calfSize} + ' cm'"></p>
+        <p th:text="'Ostatnia aktualizacja: ' + ${profile?.lastUpdate}"></p>
     </div>
 
     <button><a th:href="@{/updateProfile}">Zaktualizuj swoje dane</a></button>
