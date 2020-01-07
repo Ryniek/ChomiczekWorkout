@@ -21,6 +21,7 @@ public class ProfileDto {
     public ProfileDto() {
     }
 
+
     public Double getWeight() {
         return weight;
     }
