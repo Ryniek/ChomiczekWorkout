@@ -68,37 +68,34 @@ public class ProfileService {
         if(profileDto.getWeight() != null)
             profile.getWeightList().add(new Weight(profile, profileDto.getWeight()));
         else
-            profile.getWeightList().add(profile.getWeightList().get(profile.getWeightList().size() - 1));
+            profile.getWeightList().add(new Weight(profile, profile.getWeightList().get(profile.getWeightList().size() - 1).getSize()));
 
         if(profileDto.getChestSize() != null)
             profile.getChestSizeList().add(new ChestSize(profile, profileDto.getChestSize()));
         else
-            profile.getChestSizeList().add(profile.getChestSizeList().get(profile.getChestSizeList().size() - 1));
+            profile.getChestSizeList().add(new ChestSize(profile, profile.getChestSizeList().get(profile.getChestSizeList().size() - 1).getSize()));
 
         if(profileDto.getArmSize() != null)
             profile.getArmSizeList().add(new ArmSize(profile, profileDto.getArmSize()));
         else {
-            System.out.println("wczesniejsze");
-            System.out.println(profileDto.getArmSize());
-            System.out.println("pozniejsze");
-            System.out.println(profile.getArmSizeList().get(profile.getArmSizeList().size() - 1));
-            profile.getArmSizeList().add(new ArmSize(profile, profile.getArmSizeList().get(profile.getArmSizeList().size() - 1));
+
+            profile.getArmSizeList().add(new ArmSize(profile, profile.getArmSizeList().get(profile.getArmSizeList().size() - 1).getSize()));
         }
 
         if(profileDto.getCalfSize() != null)
             profile.getCalfSizeList().add(new CalfSize(profile, profileDto.getCalfSize()));
         else
-            profile.getCalfSizeList().add(profile.getCalfSizeList().get(profile.getCalfSizeList().size() - 1));
+            profile.getCalfSizeList().add(new CalfSize(profile, profile.getCalfSizeList().get(profile.getCalfSizeList().size() - 1).getSize()));
 
         if(profileDto.getThighSize() != null)
             profile.getThighSizeList().add(new ThighSize(profile, profileDto.getThighSize()));
         else
-            profile.getThighSizeList().add(profile.getThighSizeList().get(profile.getThighSizeList().size() - 1));
+            profile.getThighSizeList().add(new ThighSize(profile, profile.getThighSizeList().get(profile.getThighSizeList().size() - 1).getSize()));
 
         if(profileDto.getForearmSize() != null)
             profile.getForearmSizeList().add(new ForearmSize(profile, profileDto.getForearmSize()));
         else
-            profile.getForearmSizeList().add(profile.getForearmSizeList().get(profile.getForearmSizeList().size() - 1));
+            profile.getForearmSizeList().add(new ForearmSize(profile, profile.getForearmSizeList().get(profile.getForearmSizeList().size() - 1).getSize()));
 
         profile.getDateList().add(new UpdateDate(profile, LocalDateTime.now()));
         profileRepository.save(profile);
