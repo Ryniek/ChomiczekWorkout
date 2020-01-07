@@ -2,13 +2,13 @@ $.ajax({
     url: 'weightData',
     success: function (result) {
         var date = JSON.parse(result).date;
-        var weigth = JSON.parse(result).weight;
-        drawLineChart(date, weigth);
+        var weight = JSON.parse(result).weight;
+        drawWeightChart(date, weight);
     }
 })
 
-function drawLineChart(date, weight) {
-    var myChart = Highcharts.chart('container', {
+function drawWeightChart(date, weight) {
+    var myChart = Highcharts.chart('weight', {
         chart: {
             type: 'line',
             width: 800

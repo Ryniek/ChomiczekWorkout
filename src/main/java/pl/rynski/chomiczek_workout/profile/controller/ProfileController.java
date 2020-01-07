@@ -96,8 +96,16 @@ public class ProfileController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm");
         timeList.forEach(time -> jsonDate.add(time.getUpdateDate().format(formatter)));
         armSizeList.forEach(armSize -> jsonArmSize.add(armSize.getSize()));
+        calfSizeList.forEach(calfSize -> jsonCalfSize.add(calfSize.getSize()));
+        chestSizeList.forEach(chestSize -> jsonChestSize.add(chestSize.getSize()));
+        forearmSizeList.forEach(forearmSize -> jsonForearmSize.add(forearmSize.getSize()));
+        thighSizeList.forEach(thighSize -> jsonThighSize.add(thighSize.getSize()));
         json.add("date", jsonDate);
         json.add("armSize", jsonArmSize);
+        json.add("calfSize", jsonCalfSize);
+        json.add("chestSize", jsonChestSize);
+        json.add("forearmSize", jsonForearmSize);
+        json.add("thighSize", jsonThighSize);
         return json.toString();
     }
 }

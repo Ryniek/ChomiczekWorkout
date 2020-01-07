@@ -1,32 +1,48 @@
 $.ajax({
-    url: 'chartData',
+    url: 'bodyData',
     success: function (result) {
         var date = JSON.parse(result).date;
-        var weigth = JSON.parse(result).weight;
-        drawLineChart(date, weigth);
+        var armSize = JSON.parse(result).armSize;
+        var calfSize = JSON.parse(result).calfSize;
+        var chestSize = JSON.parse(result).chestSize;
+        var forearmSize = JSON.parse(result).forearmSize;
+        var thighSize = JSON.parse(result).thighSize;
+        drawLineChart(date, armSize, calfSize, chestSize, forearmSize, thighSize);
     }
 })
 
-function drawLineChart(date, weight) {
-    var myChart = Highcharts.chart('container', {
+function drawLineChart(date, armSize, calfSize, chestSize, forearmSize, thighSize) {
+    var myChart = Highcharts.chart('body', {
         chart: {
             type: 'line',
             width: 800
         },
         title: {
-            text: 'Waga ciała na przestrzeni czasu'
+            text: 'Pozostałe parametry ciała na przestrzeni czasu'
         },
         xAxis: {
             categories: date
         },
         yAxis: {
             title: {
-                text: 'Waga[Kg]'
+                text: 'Rozmiar[Cm]'
             }
         },
         series: [{
-            name: 'Waga',
-            data: weight
+            name: 'Obwód ramienia',
+            data: armSize
+        }, {
+            name: 'Obwód łydki',
+            data: calfSize
+        }, {
+            name: 'Obwód klatki piersiowej',
+            data: chestSize
+        }, {
+            name: 'Obwód przedramienia',
+            data: forearmSize
+        }, {
+            name: 'Obwód uda',
+            data: thighSize
         }]
     });
 }
