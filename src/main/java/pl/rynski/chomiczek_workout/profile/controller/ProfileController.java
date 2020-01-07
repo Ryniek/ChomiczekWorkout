@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import pl.rynski.chomiczek_workout.profile.model.UpdateDate;
-import pl.rynski.chomiczek_workout.profile.model.Weight;
+import pl.rynski.chomiczek_workout.profile.model.*;
 import pl.rynski.chomiczek_workout.profile.modelDto.ErrorMessage;
 import pl.rynski.chomiczek_workout.profile.modelDto.ProfileDto;
 import pl.rynski.chomiczek_workout.profile.service.ProfileService;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -61,20 +61,43 @@ public class ProfileController {
         }
     }
 
-    @GetMapping("/chartData")
+    @GetMapping("/weightData")
     @ResponseBody
-    public String getDataForChart() {
+    public String getWeightForChart() {
         List<UpdateDate> timeList = profileService.getProfile().getDateList();
         List<Weight> weightList = profileService.getProfile().getWeightList();
         JsonArray jsonDate = new JsonArray();
         JsonArray jsonWeight = new JsonArray();
         JsonObject json = new JsonObject();
-        timeList.forEach(time -> jsonDate.add(time.getUpdateDate().toString()));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm");
+        timeList.forEach(time -> jsonDate.add(time.getUpdateDate().format(formatter)));
         weightList.forEach(weight -> jsonWeight.add(weight.getSize()));
         json.add("date", jsonDate);
         json.add("weight", jsonWeight);
         return json.toString();
+    }
 
-
+    @GetMapping("/bodyData")
+    @ResponseBody
+    public String getBodyForChart() {
+        List<UpdateDate> timeList = profileService.getProfile().getDateList();
+        List<ArmSize> armSizeList = profileService.getProfile().getArmSizeList();
+        List<CalfSize> calfSizeList = profileService.getProfile().getCalfSizeList();
+        List<ChestSize> chestSizeList = profileService.getProfile().getChestSizeList();
+        List<ForearmSize> forearmSizeList = profileService.getProfile().getForearmSizeList();
+        List<ThighSize> thighSizeList = profileService.getProfile().getThighSizeList();
+        JsonArray jsonDate = new JsonArray();
+        JsonArray jsonArmSize = new JsonArray();
+        JsonArray jsonCalfSize = new JsonArray();
+        JsonArray jsonChestSize = new JsonArray();
+        JsonArray jsonForearmSize = new JsonArray();
+        JsonArray jsonThighSize = new JsonArray();
+        JsonObject json = new JsonObject();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm");
+        timeList.forEach(time -> jsonDate.add(time.getUpdateDate().format(formatter)));
+        armSizeList.forEach(armSize -> jsonArmSize.add(armSize.getSize()));
+        json.add("date", jsonDate);
+        json.add("armSize", jsonArmSize);
+        return json.toString();
     }
 }

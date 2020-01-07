@@ -11,7 +11,7 @@ function drawLineChart(date, weight) {
     var myChart = Highcharts.chart('container', {
         chart: {
             type: 'line',
-            width: 500
+            width: 800
         },
         title: {
             text: 'Waga ciała na przestrzeni czasu'
