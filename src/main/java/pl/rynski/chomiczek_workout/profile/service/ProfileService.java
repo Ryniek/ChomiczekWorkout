@@ -64,6 +64,7 @@ public class ProfileService {
 
     public void updateProfile(ProfileDto profileDto) {
         Profile profile = profileRepository.findById(getIdOfActiveUser()).get();
+
         if(profileDto.getWeight() != null)
             profile.getWeightList().add(new Weight(profile, profileDto.getWeight()));
         else
@@ -76,8 +77,13 @@ public class ProfileService {
 
         if(profileDto.getArmSize() != null)
             profile.getArmSizeList().add(new ArmSize(profile, profileDto.getArmSize()));
-        else
-            profile.getArmSizeList().add(profile.getArmSizeList().get(profile.getArmSizeList().size() - 1));
+        else {
+            System.out.println("wczesniejsze");
+            System.out.println(profileDto.getArmSize());
+            System.out.println("pozniejsze");
+            System.out.println(profile.getArmSizeList().get(profile.getArmSizeList().size() - 1));
+            profile.getArmSizeList().add(new ArmSize(profile, profile.getArmSizeList().get(profile.getArmSizeList().size() - 1));
+        }
 
         if(profileDto.getCalfSize() != null)
             profile.getCalfSizeList().add(new CalfSize(profile, profileDto.getCalfSize()));
