@@ -24,7 +24,12 @@ public class ProfileService {
         this.userRepository = userRepository;
     }
 
-    public ProfileDto getProfile() {
+    public Profile getProfile() {
+        Profile profile = profileRepository.findById(getIdOfActiveUser()).get();
+        return profile;
+    }
+
+    public ProfileDto getProfileDto() {
         Profile profile = profileRepository.findById(getIdOfActiveUser()).get();
         ProfileDto profileDto = new ProfileDto();
         if(!profile.getWeightList().isEmpty()) {
