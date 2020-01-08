@@ -7,22 +7,22 @@
 <body>
     <p>Wprowadź aktualne parametry swojego ciała(<b>Zostaw puste pole jeśli dane nie zmieniły się od ostatniego razu</b>): </p>
     <form th:action="@{/updateProfile}" method="post">
-        <p>Waga[1-250]: <input type="text" th:field="${profileDto.weight}"/>
+        <p>Waga[1-250]: <input type="text" th:field="${profileUserDto.weight}"/>
             <span th:if="${profile.weight == null}"></span>
             <span th:unless="${profile.weight == null}" th:text="' Było: ' + ${profile?.weight}"></span></p>
-        <p>Obwód klatki piersiowej[1-150]: <input type="text" th:field="${profileDto.chestSize}">
+        <p>Obwód klatki piersiowej[1-150]: <input type="text" th:field="${profileUserDto.chestSize}">
             <span th:if="${profile.chestSize == null}"></span>
             <span th:unless="${profile.chestSize == null}" th:text="' Było ' + ${profile?.chestSize}"></span></p>
-        <p>Obwód ramienia[1-80]: <input type="text" th:field="${profileDto.armSize}">
+        <p>Obwód ramienia[1-80]: <input type="text" th:field="${profileUserDto.armSize}">
             <span th:if="${profile.armSize == null}"></span>
             <span th:unless="${profile.armSize == null}" th:text="' Było ' + ${profile?.armSize}"></span></p>
-        <p>Obwód przedramienia[1-50]: <input type="text" th:field="${profileDto.forearmSize}">
+        <p>Obwód przedramienia[1-50]: <input type="text" th:field="${profileUserDto.forearmSize}">
             <span th:if="${profile.forearmSize == null}"></span>
             <span th:unless="${profile.forearmSize == null}" th:text="' Było ' + ${profile?.forearmSize}"></span></p>
-        <p>Obwód uda[1-100]: <input type="text" th:field="${profileDto.thighSize}">
+        <p>Obwód uda[1-100]: <input type="text" th:field="${profileUserDto.thighSize}">
             <span th:if="${profile.thighSize == null}"></span>
             <span th:unless="${profile.thighSize == null}" th:text="' Było ' + ${profile?.thighSize}"></span></p>
-        <p>Obwód łydki[1-50]: <input type="text" th:field="${profileDto.calfSize}">
+        <p>Obwód łydki[1-50]: <input type="text" th:field="${profileUserDto.calfSize}">
             <span th:if="${profile.calfSize == null}"></span>
             <span th:unless="${profile.calfSize == null}" th:text="' Było: ' + ${profile?.calfSize}"></span></p>
         <input type="submit" value="Zatwierdź">

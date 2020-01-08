@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.rynski.chomiczek_workout.profile.model.*;
 import pl.rynski.chomiczek_workout.profile.modelDto.ErrorMessage;
-import pl.rynski.chomiczek_workout.profile.modelDto.ProfileDto;
+import pl.rynski.chomiczek_workout.profile.modelDto.ProfileUserDto;
 import pl.rynski.chomiczek_workout.profile.service.ProfileService;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -41,15 +40,15 @@ public class ProfileController {
     @GetMapping("/updateProfile")
     public String getUpdateSite(@ModelAttribute("errorMessage") ErrorMessage errorMessage, Model model) {
         model.addAttribute("profile", profileService.getProfileDto());
-        model.addAttribute("profileDto", new ProfileDto());
+        model.addAttribute("profileDto", new ProfileUserDto());
         model.addAttribute("errorMessage", errorMessage);
         return "profileUpdate";
     }
 
     @PostMapping("/updateProfile")
-    public String updateProfile(@Valid @ModelAttribute ProfileDto profileDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String updateProfile(@Valid @ModelAttribute ProfileUserDto profileUserDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (!bindingResult.hasErrors()) {
-            profileService.updateProfile(profileDto);
+            profileService.updateProfile(profileUserDto);
             return "redirect:/profile";
         } else {
             List<ObjectError> errors = bindingResult.getAllErrors();

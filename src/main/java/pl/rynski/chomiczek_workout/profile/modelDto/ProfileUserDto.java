@@ -3,8 +3,8 @@ package pl.rynski.chomiczek_workout.profile.modelDto;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 
-public class ProfileDto {
-    @DecimalMin(value = "1.0", message = "Waga musi wynosić minimum 1kg oraz maximum 150kg.") @DecimalMax(value = "250.0", message = "Waga musi wynosić minimum 1kg oraz maximum 250kg.")
+public class ProfileUserDto {
+    @DecimalMin(value = "1.0", message = "Waga musi wynosić minimum 1kg oraz maximum 250kg.") @DecimalMax(value = "250.0", message = "Waga musi wynosić minimum 1kg oraz maximum 250kg.")
     private Double weight;
     @DecimalMin(value = "1.0", message = "Obwód klatki piersiowej musi wynosić minimum 1cm oraz maximum 150cm.") @DecimalMax(value = "150.0", message = "Obwód klatki piersiowej musi wynosić minimum 1cm oraz maximum 150cm.")
     private Double chestSize;
@@ -18,7 +18,7 @@ public class ProfileDto {
     private Double calfSize;
     private String lastUpdate;
 
-    public ProfileDto() {
+    public ProfileUserDto() {
     }
 
 
