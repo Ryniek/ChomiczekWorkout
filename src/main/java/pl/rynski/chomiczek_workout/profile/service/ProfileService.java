@@ -24,7 +24,12 @@ public class ProfileService {
         this.userRepository = userRepository;
     }
 
-    public ProfileDto getProfile() {
+    public Profile getProfile() {
+        Profile profile = profileRepository.findById(getIdOfActiveUser()).get();
+        return profile;
+    }
+
+    public ProfileDto getProfileDto() {
         Profile profile = profileRepository.findById(getIdOfActiveUser()).get();
         ProfileDto profileDto = new ProfileDto();
         if(!profile.getWeightList().isEmpty()) {
@@ -59,12 +64,39 @@ public class ProfileService {
 
     public void updateProfile(ProfileDto profileDto) {
         Profile profile = profileRepository.findById(getIdOfActiveUser()).get();
-        profile.getWeightList().add(new Weight(profile, profileDto.getWeight()));
-        profile.getChestSizeList().add(new ChestSize(profile, profileDto.getChestSize()));
-        profile.getArmSizeList().add(new ArmSize(profile, profileDto.getArmSize()));
-        profile.getCalfSizeList().add(new CalfSize(profile, profileDto.getCalfSize()));
-        profile.getThighSizeList().add(new ThighSize(profile, profileDto.getThighSize()));
-        profile.getForearmSizeList().add(new ForearmSize(profile, profileDto.getForearmSize()));
+
+        if(profileDto.getWeight() != null)
+            profile.getWeightList().add(new Weight(profile, profileDto.getWeight()));
+        else
+            profile.getWeightList().add(new Weight(profile, profile.getWeightList().get(profile.getWeightList().size() - 1).getSize()));
+
+        if(profileDto.getChestSize() != null)
+            profile.getChestSizeList().add(new ChestSize(profile, profileDto.getChestSize()));
+        else
+            profile.getChestSizeList().add(new ChestSize(profile, profile.getChestSizeList().get(profile.getChestSizeList().size() - 1).getSize()));
+
+        if(profileDto.getArmSize() != null)
+            profile.getArmSizeList().add(new ArmSize(profile, profileDto.getArmSize()));
+        else {
+
+            profile.getArmSizeList().add(new ArmSize(profile, profile.getArmSizeList().get(profile.getArmSizeList().size() - 1).getSize()));
+        }
+
+        if(profileDto.getCalfSize() != null)
+            profile.getCalfSizeList().add(new CalfSize(profile, profileDto.getCalfSize()));
+        else
+            profile.getCalfSizeList().add(new CalfSize(profile, profile.getCalfSizeList().get(profile.getCalfSizeList().size() - 1).getSize()));
+
+        if(profileDto.getThighSize() != null)
+            profile.getThighSizeList().add(new ThighSize(profile, profileDto.getThighSize()));
+        else
+            profile.getThighSizeList().add(new ThighSize(profile, profile.getThighSizeList().get(profile.getThighSizeList().size() - 1).getSize()));
+
+        if(profileDto.getForearmSize() != null)
+            profile.getForearmSizeList().add(new ForearmSize(profile, profileDto.getForearmSize()));
+        else
+            profile.getForearmSizeList().add(new ForearmSize(profile, profile.getForearmSizeList().get(profile.getForearmSizeList().size() - 1).getSize()));
+
         profile.getDateList().add(new UpdateDate(profile, LocalDateTime.now()));
         profileRepository.save(profile);
     }

@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Profil</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
 </head>
 <body>
     <p>Twój profil:</p>
     <div>
-        <p th:text="'Waga: ' + ${profile?.getWeight()} + ' kg'"></p>
-        <p th:text="'Obwód klatki piersiowej: ' + ${profile?.getChestSize()} + ' cm'"></p>
-        <p th:text="'Obwód ramienia: ' + ${profile?.getArmSize()} + ' cm'"></p>
-        <p th:text="'Obwód przedramienia: ' + ${profile?.getForearmSize()} + ' cm'"></p>
-        <p th:text="'Obwód uda: ' + ${profile?.getThighSize()} + ' cm'"></p>
-        <p th:text="'Obwód łydki: ' + ${profile?.getCalfSize()} + ' cm'"></p>
-        <p th:text="'Ostatnia aktualizacja: ' + ${profile.getLastUpdate()}"></p>
+        <p th:if="${profile.weight == null}">Waga: Zaktualizuj dane</p>
+        <p th:unless="${profile.weight == null}" th:text="'Waga: ' + ${profile?.weight} + ' kg'"></p>
+        <p th:if="${profile.chestSize == null}">Obwód klatki piersiowej: Zaktualizuj dane</p>
+        <p th:unless="${profile.chestSize == null}" th:text="'Obwód klatki piersiowej: ' + ${profile?.chestSize} + ' cm'"></p>
+        <p th:if="${profile.armSize == null}">Obwód ramienia: Zaktualizuj dane</p>
+        <p th:unless="${profile.armSize == null}" th:text="'Obwód ramienia: ' + ${profile?.armSize} + ' cm'"></p>
+        <p th:if="${profile.forearmSize == null}">Obwód przedramienia: Zaktualizuj dane</p>
+        <p th:unless="${profile.forearmSize == null}" th:text="'Obwód przedramienia: ' + ${profile?.forearmSize} + ' cm'"></p>
+        <p th:if="${profile.thighSize == null}">Obwód uda: Zaktualizuj dane</p>
+        <p th:unless="${profile.thighSize == null}" th:text="'Obwód uda: ' + ${profile?.thighSize} + ' cm'"></p>
+        <p th:if="${profile.calfSize == null}">Obwód łydki:: Zaktualizuj dane</p>
+        <p th:unless="${profile.calfSize == null}" th:text="'Obwód łydki: ' + ${profile?.calfSize} + ' cm'"></p>
+        <p th:if="${profile.lastUpdate == null}">Ostatnia aktualizacja:: Zaktualizuj dane</p>
+        <p th:unless="${profile.lastUpdate == null}" th:text="'Ostatnia aktualizacja: ' + ${profile?.lastUpdate}"></p>
     </div>
 
     <button><a th:href="@{/updateProfile}">Zaktualizuj swoje dane</a></button>
@@ -22,5 +33,14 @@
     <form action="logmeout" th:action="@{/logmeout}" method="post">
         <input type="submit" value="Wyloguj"/>
     </form>
+    <br>
+    <br>
+    <div id="weight" style="width:100%; height:400px;"></div>
+    <br>
+    <br>
+    <div id="body" style="width:100%; height:400px;"></div>
+
+    <script type="text/javascript" src="../static/js/weightChart.js" th:src="@{/js/weightChart.js}"></script>
+    <script type="text/javascript" src="../static/js/bodyChart.js" th:src="@{/js/bodyChart.js}"></script>
 </body>
 </html>

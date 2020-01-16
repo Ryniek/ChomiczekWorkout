@@ -4,20 +4,23 @@
        
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
-    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <!-- Load font awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="../static/styles/background.css" th:href="@{/images/background.css}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="../static/styles/background.css" th:href="@{/images/background.css}" rel="stylesheet" >
 
-    
     <title>Chomiczek Workout</title>
 </head>
 
@@ -29,27 +32,28 @@
 </div>
 
 <link href="../static/styles/navbar.css" th:href="@{/styles/navbar.css}" rel="stylesheet">
- <div class="navbar">
+<div class="navbar">
     <a href="index.html">Home</a>
-     <a href="#contact">Kontakt</a>
-      <a href="#aboutUs">O Nas</a>
-      <a href="#informations">Informacje</a>
-      <a href="#reg" onclick="document.getElementById('reg').style.display='block'" style="width:auto;">Rejestracja</a>
-      <a href="#log" onclick="document.getElementById('log').style.display='block'" style="width:auto;">Logowanie</a>
+    <a href="#contact">Kontakt</a>
+    <a href="#aboutUs">O Nas</a>
+    <a href="#informations">Informacje</a>
+    <a href="#reg" onclick="document.getElementById('reg').style.display='block'" style="width:auto;">Rejestracja</a>
+    <a href="#log" onclick="document.getElementById('log').style.display='block'" style="width:auto;">Logowanie</a>
 </div>
 
 
 <link href="../static/styles/iconbar.css" th:href="@{styles/iconbar.css}" rel="stylesheet">
 <div class="icon-bar">
-  <a href="https://www.facebook.com/amw.gdynia/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-  <a href="https://media.makeameme.org/created/so-you-came-la2lrn.jpg" class="google" target="_blank"><i class="fa fa-google"></i></a>
-  <a href="https://github.com/Ryniek/ChomiczekWorkout" class="github" target="_blank"><i class=" fa fa-github"></i></a>
+    <a href="https://www.facebook.com/amw.gdynia/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+    <a href="https://media.makeameme.org/created/so-you-came-la2lrn.jpg" class="google" target="_blank"><i class="fa fa-google"></i></a>
+    <a href="https://github.com/Ryniek/ChomiczekWorkout" class="github" target="_blank"><i class=" fa fa-github"></i></a>
 </div>
 <center><div class="napis1">Zobacz jak wygląda Nasz portal: *obrazki z tabelek czy coś*</div></center>
 
 <link href="../static/styles/scroller.css" th:href="@{styles/scroller.css}" rel="stylesheet">
 <div class="topButton">
-<button onclick="topFunction()" id="myBtn" title="topBtn"><i class="fa fa-level-up"></i></button></div>
+    <button onclick="topFunction()" id="myBtn" title="topBtn"><i class="fa fa-level-up"></i></button>
+</div>
         
  
 
@@ -67,54 +71,53 @@
     </div>
 </div>
     
-    
-<div id="reg" class="modal">
-<div class="container">
-    <div class="row centered-form">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div style="text-align: center;"><h3 class="panel-title">Zarejestruj się na Chomiczka!</h3></div>
-                </div>
-                <div class="panel-body">
-                    <form th:action="@{/register}" th:object="${userForm}" method="post" role="form">
-                        <div class="form-group">
-                            <input th:field="*{username}" type="text" name="login" id="login" class="form-control input-sm" placeholder="Login" required>
-                        </div>
-                        <div class="form-group">
-                            <input th:field="*{email}" type="email" name="email" id="email" class="form-control input-sm" placeholder="Adres Email" required>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input th:field="${userDto.password}" type="password" name="password" id="password" class="form-control input-sm" placeholder="Hasło" required>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input th:field="${userDto.confirmPassword}" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Potwierdź hasło" required>
-                                </div>
-                            </div>
-                        </div>
 
-                        <input type="submit" value="Zarejestruj się" class="btn btn-info btn-block">
-                    </form>
-                    <ul>
-                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
-                    </ul>
+<div id="reg" class="modal">
+    <div class="container">
+        <div class="row centered-form">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div style="text-align: center;"><h3 class="panel-title">Zarejestruj się na Chomiczka!</h3></div>
+                    </div>
+                    <div class="panel-body">
+                        <form th:action="@{/register}" th:object="${userForm}" method="post" role="form">
+                            <div class="form-group">
+                                <input th:field="*{username}" type="text" name="login" id="login" class="form-control input-sm" placeholder="Login" required>
+                            </div>
+                            <div class="form-group">
+                                <input th:field="*{email}" type="email" name="email" id="email" class="form-control input-sm" placeholder="Adres Email" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input th:field="${userDto.password}" type="password" name="password" id="password" class="form-control input-sm" placeholder="Hasło" required>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input th:field="${userDto.confirmPassword}" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Potwierdź hasło" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="submit" value="Zarejestruj się" class="btn btn-info btn-block">
+                        </form>
+                        <ul>
+                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    </div>
-    
 </body>          
 
 <footer class="footer">To jest stopka</footer>
-    <!-- skrypciki !-->
-    <script src="../static/js/clickOverBox.js" th:src="@{/js/clickOverBox.js}"></script>
-    <script src="../static/js/scroller.js" th:src="@{/js/clickOverBox.js}"></script>
-    
-                    
+<!-- skrypciki !-->
+<script type="text/javascript" th:src="@{/js/clickOverBox.js}"></script>
+<script type="text/javascript" th:src="@{/js/scroller.js}"></script>
+
+
 </html>
