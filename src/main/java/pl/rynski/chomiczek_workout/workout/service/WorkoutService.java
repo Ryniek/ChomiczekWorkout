@@ -35,14 +35,26 @@ public class WorkoutService {
         if(workoutDto.getPullUpsQuantity() != 0) {
             workout.getPullUpList().add(new PullUp(workoutDto.getPullUpsQuantity(), workout, date));
         }
+        if(workoutDto.getPullUpsQuantity() == 0) {
+            workout.getPullUpList().add(new PullUp(0, workout, date));
+        }
         if(workoutDto.getPumpsQuantity() != 0) {
             workout.getPumpList().add(new Pump(workoutDto.getPumpsQuantity(), workout, date));
+        }
+        if(workoutDto.getPumpsQuantity() == 0) {
+            workout.getPumpList().add(new Pump(0, workout, date));
         }
         if(workoutDto.getMuscleUpsQuantity() != 0) {
             workout.getMuscleUpList().add(new MuscleUp(workoutDto.getMuscleUpsQuantity(), workout, date));
         }
+        if(workoutDto.getMuscleUpsQuantity() == 0) {
+            workout.getMuscleUpList().add(new MuscleUp(0, workout, date));
+        }
         if(workoutDto.getNote() != null) {
             workout.getNotes().add(new TrainingNote(workoutDto.getNote(), workout));
+        }
+        if(workoutDto.getNote() == null) {
+            workout.getNotes().add(new TrainingNote(" ", workout));
         }
         workoutRepository.save(workout);
     }

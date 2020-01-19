@@ -31,7 +31,7 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-    
+
     @GetMapping("/profile")
     public String getProfile(Model model) {
         model.addAttribute("profile", profileService.getProfileDto());
