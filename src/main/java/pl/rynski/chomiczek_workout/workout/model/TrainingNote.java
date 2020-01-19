@@ -1,26 +1,24 @@
 package pl.rynski.chomiczek_workout.workout.model;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Pump {
-
+public class TrainingNote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int quantity;
+    private String content;
     @ManyToOne
     @JoinColumn
     private Workout workout;
-    private LocalDate localDate;
 
-    public Pump() {
+    public TrainingNote() {
     }
 
-    public Pump(int quantity, Workout workout, LocalDate localDate) {
-        this.quantity = quantity;
+    public TrainingNote(String content, Workout workout) {
+        this.content = content;
         this.workout = workout;
-        this.localDate = localDate;
     }
 
     public Long getId() {
@@ -31,12 +29,12 @@ public class Pump {
         this.id = id;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getContent() {
+        return content;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Workout getWorkout() {
@@ -45,13 +43,5 @@ public class Pump {
 
     public void setWorkout(Workout workout) {
         this.workout = workout;
-    }
-
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
-
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
     }
 }

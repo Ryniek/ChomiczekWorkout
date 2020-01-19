@@ -13,10 +13,33 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="training : ${summarize}">
-                <td></td>
-                <td></td>
-            </tr>
+            <form th:action="@{/summarizeAll}" method="post">
+                <tr>
+                    <td th:if="${summarize.pullUp == true}">Podciagniecia nachwytem</td>
+                    <td th:unless="${summarize.pullUp == true}"></td>
+                    <td th:if="${summarize.pullUp == true}"><input type="number" th:field="${workoutDto.pullUpsQuantity}" required></td>
+                    <td th:unless="${summarize.pullUp == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.pump == true}">Pompki</td>
+                    <td th:unless="${summarize.pump == true}"></td>
+                    <td th:if="${summarize.pump == true}"><input type="number" th:field="${workoutDto.pumpsQuantity}" required></td>
+                    <td th:unless="${summarize.pump == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.muscleUp == true}">Muscle upy</td>
+                    <td th:unless="${summarize.muscleUp == true}"></td>
+                    <td th:if="${summarize.muscleUp == true}"><input type="number" th:field="${workoutDto.muscleUpsQuantity}" required></td>
+                    <td th:unless="${summarize.muscleUp == true}"></td>
+                </tr>
+                <tr>
+                    <td>Notatka</td>
+                    <td><textarea rows="7" cols="50" th:field="${workoutDto.note}"></textarea></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Wyślij"></td>
+                </tr>
+            </form>
         </tbody>
     </table>
 </body>

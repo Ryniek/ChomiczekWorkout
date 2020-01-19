@@ -28,6 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/weightData").permitAll()
                 .antMatchers("/bodyData").permitAll()
                 .antMatchers("/summarize").permitAll()
+                .antMatchers("/summarizeAll").permitAll()
+                .antMatchers("/sum").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

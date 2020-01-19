@@ -12,8 +12,8 @@
                 <th>Zrobione</th>
             </tr>
         </thead>
-        <form th:action="@{/summarize}" method="post">
             <tbody>
+            <form th:action="@{/summarize}" method="post">
                 <tr>
                     <td>Podciąganie nachwytem</td>
                     <td>
@@ -32,9 +32,11 @@
                         <input type="checkbox" value="false" th:field="${summarize.muscleUp}">
                     </td>
                 </tr>
-                <input type="submit">
-            </tbody>
+                <tr>
+                    <td><input type="submit" value="Wyslij"></td>
+                </tr>
         </form>
+            </tbody>
     </table>
 </body>
 </html>

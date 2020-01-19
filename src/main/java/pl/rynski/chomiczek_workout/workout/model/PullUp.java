@@ -17,9 +17,10 @@ public class PullUp {
     public PullUp() {
     }
 
-    public PullUp(int quantity, Workout workout) {
+    public PullUp(int quantity, Workout workout, LocalDate localDate) {
         this.quantity = quantity;
         this.workout = workout;
+        this.localDate = localDate;
     }
 
     public Long getId() {

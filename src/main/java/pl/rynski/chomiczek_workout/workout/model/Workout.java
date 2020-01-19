@@ -16,6 +16,8 @@ public class Workout {
     private List<PullUp> pullUpList = new ArrayList<>();
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
     private List<Pump> pumpList = new ArrayList<>();
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
+    private List<TrainingNote> notes = new ArrayList<>();;
 
     public Workout() {
     }
@@ -62,5 +64,13 @@ public class Workout {
 
     public void setPumpList(List<Pump> pumpList) {
         this.pumpList = pumpList;
+    }
+
+    public List<TrainingNote> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<TrainingNote> notes) {
+        this.notes = notes;
     }
 }
