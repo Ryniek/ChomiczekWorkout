@@ -1,10 +1,12 @@
-package pl.rynski.chomiczek_workout.workout.model;
+package pl.rynski.chomiczek_workout.workout.trainings;
+
+import pl.rynski.chomiczek_workout.workout.model.Workout;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class MuscleUp {
+public class SkinTheCat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,10 +16,10 @@ public class MuscleUp {
     private Workout workout;
     private LocalDate localDate;
 
-    public MuscleUp() {
+    public SkinTheCat() {
     }
 
-    public MuscleUp(int quantity, Workout workout, LocalDate localDate) {
+    public SkinTheCat(int quantity, Workout workout, LocalDate localDate) {
         this.quantity = quantity;
         this.workout = workout;
         this.localDate = localDate;

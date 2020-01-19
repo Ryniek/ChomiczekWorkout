@@ -1,10 +1,11 @@
-package pl.rynski.chomiczek_workout.workout.model;
+package pl.rynski.chomiczek_workout.workout.trainings;
+
+import pl.rynski.chomiczek_workout.workout.model.Workout;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
 @Entity
-public class PullUp {
+public class DiamondPushup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,10 +15,10 @@ public class PullUp {
     private Workout workout;
     private LocalDate localDate;
 
-    public PullUp() {
+    public DiamondPushup() {
     }
 
-    public PullUp(int quantity, Workout workout, LocalDate localDate) {
+    public DiamondPushup(int quantity, Workout workout, LocalDate localDate) {
         this.quantity = quantity;
         this.workout = workout;
         this.localDate = localDate;
@@ -46,7 +47,6 @@ public class PullUp {
     public void setWorkout(Workout workout) {
         this.workout = workout;
     }
-
 
     public LocalDate getLocalDate() {
         return localDate;

@@ -15,7 +15,7 @@
         <tbody>
             <form th:action="@{/summarizeAll}" method="post">
                 <tr>
-                    <td th:if="${summarize.pullUp == true}">Podciagniecia nachwytem</td>
+                    <td th:if="${summarize.pullUp == true}">Podciagniecia nachwyt</td>
                     <td th:unless="${summarize.pullUp == true}"></td>
                     <td th:if="${summarize.pullUp == true}"><input type="number" th:field="${workoutDto.pullUpsQuantity}" required></td>
                     <td th:unless="${summarize.pullUp == true}"></td>
@@ -31,6 +31,66 @@
                     <td th:unless="${summarize.muscleUp == true}"></td>
                     <td th:if="${summarize.muscleUp == true}"><input type="number" th:field="${workoutDto.muscleUpsQuantity}" required></td>
                     <td th:unless="${summarize.muscleUp == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.australianPullUp == true}">Australian pullup</td>
+                    <td th:unless="${summarize.australianPullUp == true}"></td>
+                    <td th:if="${summarize.australianPullUp == true}"><input type="number" th:field="${workoutDto.australianPullUpsQuantity}" required></td>
+                    <td th:unless="${summarize.australianPullUp == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.diamondPushUp == true}">Diamond pushups</td>
+                    <td th:unless="${summarize.diamondPushUp == true}"></td>
+                    <td th:if="${summarize.diamondPushUp == true}"><input type="number" th:field="${workoutDto.diamondPushupsQuantity}" required></td>
+                    <td th:unless="${summarize.diamondPushUp == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.dip == true}">Dipy</td>
+                    <td th:unless="${summarize.dip == true}"></td>
+                    <td th:if="${summarize.dip == true}"><input type="number" th:field="${workoutDto.dipsQuantity}" required></td>
+                    <td th:unless="${summarize.dip == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.impossibleDip == true}">Impossible dipy</td>
+                    <td th:unless="${summarize.impossibleDip == true}"></td>
+                    <td th:if="${summarize.impossibleDip == true}"><input type="number" th:field="${workoutDto.impossibleDipsQuantity}" required></td>
+                    <td th:unless="${summarize.impossibleDip == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.oneBarDip == true}">One bar dipy</td>
+                    <td th:unless="${summarize.oneBarDip == true}"></td>
+                    <td th:if="${summarize.oneBarDip == true}"><input type="number" th:field="${workoutDto.oneBarDipsQuantity}" required></td>
+                    <td th:unless="${summarize.oneBarDip == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.planchePushup == true}">Planche pushups</td>
+                    <td th:unless="${summarize.planchePushup == true}"></td>
+                    <td th:if="${summarize.planchePushup == true}"><input type="number" th:field="${workoutDto.planchePushupsQuantity}" required></td>
+                    <td th:unless="${summarize.planchePushup == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.pullUpUnder == true}">Podciągnięcia podchwyt</td>
+                    <td th:unless="${summarize.pullUpUnder == true}"></td>
+                    <td th:if="${summarize.pullUpUnder == true}"><input type="number" th:field="${workoutDto.pullUpsUnderQuantity}" required></td>
+                    <td th:unless="${summarize.pullUpUnder == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.skinTheCat == true}">Skin the cat</td>
+                    <td th:unless="${summarize.skinTheCat == true}"></td>
+                    <td th:if="${summarize.skinTheCat == true}"><input type="number" th:field="${workoutDto.skinTheCatQuantity}" required></td>
+                    <td th:unless="${summarize.skinTheCat == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.squad == true}">Squads</td>
+                    <td th:unless="${summarize.squad == true}"></td>
+                    <td th:if="${summarize.squad == true}"><input type="number" th:field="${workoutDto.squadsQuantity}" required></td>
+                    <td th:unless="${summarize.squad == true}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${summarize.tigerPushup == true}">Tiger pushups</td>
+                    <td th:unless="${summarize.tigerPushup == true}"></td>
+                    <td th:if="${summarize.tigerPushup == true}"><input type="number" th:field="${workoutDto.tigerPushupsQuantity}" required></td>
+                    <td th:unless="${summarize.tigerPushup == true}"></td>
                 </tr>
                 <tr>
                     <td>Notatka</td>

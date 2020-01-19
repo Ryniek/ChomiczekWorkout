@@ -1,10 +1,11 @@
-package pl.rynski.chomiczek_workout.workout.model;
+package pl.rynski.chomiczek_workout.workout.trainings;
+
+import pl.rynski.chomiczek_workout.workout.model.Workout;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-
 @Entity
-public class Pump {
-
+public class PlanchePushup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,10 +15,10 @@ public class Pump {
     private Workout workout;
     private LocalDate localDate;
 
-    public Pump() {
+    public PlanchePushup() {
     }
 
-    public Pump(int quantity, Workout workout, LocalDate localDate) {
+    public PlanchePushup(int quantity, Workout workout, LocalDate localDate) {
         this.quantity = quantity;
         this.workout = workout;
         this.localDate = localDate;
