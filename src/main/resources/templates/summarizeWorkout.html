@@ -35,6 +35,9 @@
                 <tr>
                     <td><input type="submit" value="Wyslij"></td>
                 </tr>
+                <tr>
+                    <td><p th:text="${errorMessage?.getError()}" style="color:red; font-weight: 600"></p></td>
+                </tr>
         </form>
             </tbody>
     </table>

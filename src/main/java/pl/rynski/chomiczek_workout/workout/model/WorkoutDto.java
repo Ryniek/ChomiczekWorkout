@@ -1,13 +1,17 @@
 package pl.rynski.chomiczek_workout.workout.model;
 
-import java.time.LocalDate;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 
 public class WorkoutDto {
 
+    @DecimalMin(value = "0", message = "Liczba pompek musi wynosić minimum 1")
     private int pumpsQuantity;
+    @DecimalMin(value = "0", message = "Liczba podciągnięć musi wynosić minimum 1")
     private int pullUpsQuantity;
+    @DecimalMin(value = "0", message = "Liczba muscle upow musi wynosić minimum 1")
     private int muscleUpsQuantity;
-    
+    @Size(max = 500, message = "Maximum 500 znakow")
     private String note;
 
     public WorkoutDto() {
