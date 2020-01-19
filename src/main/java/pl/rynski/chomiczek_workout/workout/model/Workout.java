@@ -39,9 +39,29 @@ public class Workout {
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
     private List<TigerPushup> tigerPushupList = new ArrayList<>();
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
+    private List<HandstandPushup> handstandPushupList = new ArrayList<>();
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
+    private List<PistolSquad> pistolSquadList = new ArrayList<>();
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
     private List<TrainingNote> notes = new ArrayList<>();
 
     public Workout() {
+    }
+
+    public List<HandstandPushup> getHandstandPushupList() {
+        return handstandPushupList;
+    }
+
+    public void setHandstandPushupList(List<HandstandPushup> handstandPushupList) {
+        this.handstandPushupList = handstandPushupList;
+    }
+
+    public List<PistolSquad> getPistolSquadList() {
+        return pistolSquadList;
+    }
+
+    public void setPistolSquadList(List<PistolSquad> pistolSquadList) {
+        this.pistolSquadList = pistolSquadList;
     }
 
     public Workout(Long userId) {

@@ -31,13 +31,17 @@ public class WorkoutDto {
     private int squadsQuantity;
     @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1")
     private int tigerPushupsQuantity;
+    @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1")
+    private int pistolSquadsQuantity;
+    @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1")
+    private int handstandPushupsQuantity;
     @Size(max = 500, message = "Maximum 500 znakow")
     private String note;
 
     public WorkoutDto() {
     }
 
-    public WorkoutDto(@DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int pumpsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int pullUpsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int muscleUpsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int australianPullUpsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int diamondPushupsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int dipsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int impossibleDipsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int oneBarDipsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int planchePushupsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int pullUpsUnderQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int skinTheCatQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int squadsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int tigerPushupsQuantity, @Size(max = 500, message = "Maximum 500 znakow") String note) {
+    public WorkoutDto(@DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int pumpsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int pullUpsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int muscleUpsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int australianPullUpsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int diamondPushupsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int dipsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int impossibleDipsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int oneBarDipsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int planchePushupsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int pullUpsUnderQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int skinTheCatQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int squadsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int tigerPushupsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int pistolSquadsQuantity, @DecimalMin(value = "0", message = "Liczba powtórzeń musi wynosić conajmniej 1") int handstandPushupsQuantity, @Size(max = 500, message = "Maximum 500 znakow") String note) {
         this.pumpsQuantity = pumpsQuantity;
         this.pullUpsQuantity = pullUpsQuantity;
         this.muscleUpsQuantity = muscleUpsQuantity;
@@ -51,6 +55,8 @@ public class WorkoutDto {
         this.skinTheCatQuantity = skinTheCatQuantity;
         this.squadsQuantity = squadsQuantity;
         this.tigerPushupsQuantity = tigerPushupsQuantity;
+        this.pistolSquadsQuantity = pistolSquadsQuantity;
+        this.handstandPushupsQuantity = handstandPushupsQuantity;
         this.note = note;
     }
 
@@ -60,6 +66,22 @@ public class WorkoutDto {
 
     public void setPumpsQuantity(int pumpsQuantity) {
         this.pumpsQuantity = pumpsQuantity;
+    }
+
+    public int getPistolSquadsQuantity() {
+        return pistolSquadsQuantity;
+    }
+
+    public void setPistolSquadsQuantity(int pistolSquadsQuantity) {
+        this.pistolSquadsQuantity = pistolSquadsQuantity;
+    }
+
+    public int getHandstandPushupsQuantity() {
+        return handstandPushupsQuantity;
+    }
+
+    public void setHandstandPushupsQuantity(int handstandPushupsQuantity) {
+        this.handstandPushupsQuantity = handstandPushupsQuantity;
     }
 
     public int getPullUpsQuantity() {

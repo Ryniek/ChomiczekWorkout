@@ -4,8 +4,9 @@ import pl.rynski.chomiczek_workout.workout.model.Workout;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 @Entity
-public class OneBarDip {
+public class HandstandPushup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,10 +16,10 @@ public class OneBarDip {
     private Workout workout;
     private LocalDate localDate;
 
-    public OneBarDip() {
+    public HandstandPushup() {
     }
 
-    public OneBarDip(int quantity, Workout workout, LocalDate localDate) {
+    public HandstandPushup(int quantity, Workout workout, LocalDate localDate) {
         this.quantity = quantity;
         this.workout = workout;
         this.localDate = localDate;

@@ -30,6 +30,12 @@ public class WorkoutController {
         this.workoutService = workoutService;
     }
 
+    @GetMapping("/trainings")
+    public String showDoneTrainings(Model model) {
+        model.addAttribute("trainings", workoutService.showTrainings());
+        return "yourTrainings";
+    }
+
     @GetMapping("/summarize")
     public String getHome(Model model, @ModelAttribute("errorMessage") ErrorMessage errorMessage) {
         Summarize summarize = new Summarize();

@@ -15,8 +15,26 @@ public class Summarize {
     private boolean isSkinTheCat;
     private boolean isSquad;
     private boolean isTigerPushup;
+    private boolean isPistolSquad;
+    private boolean isHandstandPushup;
 
     public Summarize() {
+    }
+
+    public boolean isPistolSquad() {
+        return isPistolSquad;
+    }
+
+    public void setPistolSquad(boolean pistolSquad) {
+        isPistolSquad = pistolSquad;
+    }
+
+    public boolean isHandstandPushup() {
+        return isHandstandPushup;
+    }
+
+    public void setHandstandPushup(boolean handstandPushup) {
+        isHandstandPushup = handstandPushup;
     }
 
     public boolean isPump() {

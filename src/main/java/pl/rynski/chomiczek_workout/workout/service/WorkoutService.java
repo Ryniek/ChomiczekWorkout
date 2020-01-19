@@ -10,6 +10,7 @@ import pl.rynski.chomiczek_workout.workout.repository.WorkoutRepository;
 import pl.rynski.chomiczek_workout.workout.trainings.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -111,6 +112,18 @@ public class WorkoutService {
         if(workoutDto.getTigerPushupsQuantity() == 0) {
             workout.getTigerPushupList().add(new TigerPushup(0, workout, date));
         }
+        if(workoutDto.getPistolSquadsQuantity() != 0) {
+            workout.getPistolSquadList().add(new PistolSquad(workoutDto.getPistolSquadsQuantity(), workout, date));
+        }
+        if(workoutDto.getPistolSquadsQuantity() == 0) {
+            workout.getPistolSquadList().add(new PistolSquad(0, workout, date));
+        }
+        if(workoutDto.getHandstandPushupsQuantity() != 0) {
+            workout.getHandstandPushupList().add(new HandstandPushup(workoutDto.getHandstandPushupsQuantity(), workout, date));
+        }
+        if(workoutDto.getHandstandPushupsQuantity() == 0) {
+            workout.getHandstandPushupList().add(new HandstandPushup(0, workout, date));
+        }
 
         if(workoutDto.getNote() != null) {
             workout.getNotes().add(new TrainingNote(workoutDto.getNote(), workout));
@@ -119,6 +132,32 @@ public class WorkoutService {
             workout.getNotes().add(new TrainingNote(" ", workout));
         }
         workoutRepository.save(workout);
+    }
+
+    public List<TrainingDto> showTrainings() {
+        Workout workout = workoutRepository.findById(getIdOfActiveUser()).get();
+        List<TrainingDto> trainingDtoList = new ArrayList<>();
+        for (int i = 0; i < workout.getNotes().size(); i++) {
+            TrainingDto trainingDto = new TrainingDto();
+            trainingDto.setAustralianPullUp(workout.getAustralianPullUpList().get(i));
+            trainingDto.setDiamondPushup(workout.getDiamondPushupList().get(i));
+            trainingDto.setDip(workout.getDipList().get(i));
+            trainingDto.setHandstandPushup(workout.getHandstandPushupList().get(i));
+            trainingDto.setImpossibleDip(workout.getImpossibleDipList().get(i));
+            trainingDto.setMuscleUp(workout.getMuscleUpList().get(i));
+            trainingDto.setOneBarDip(workout.getOneBarDipList().get(i));
+            trainingDto.setPistolSquad(workout.getPistolSquadList().get(i));
+            trainingDto.setPlanchePushup(workout.getPlanchePushupList().get(i));
+            trainingDto.setPullUp(workout.getPullUpList().get(i));
+            trainingDto.setPullUpUnder(workout.getPullUpUnderList().get(i));
+            trainingDto.setPump(workout.getPumpList().get(i));
+            trainingDto.setSkinTheCat(workout.getSkinTheCatList().get(i));
+            trainingDto.setSquad(workout.getSquadList().get(i));
+            trainingDto.setTigerPushup(workout.getTigerPushupList().get(i));
+            trainingDto.setNotes(workout.getNotes().get(i));
+            trainingDtoList.add(trainingDto);
+        }
+        return trainingDtoList;
     }
 
     public List<Pump> getQuantity() {
