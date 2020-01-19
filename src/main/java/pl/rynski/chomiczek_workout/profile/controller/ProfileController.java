@@ -31,6 +31,7 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
+    
     @GetMapping("/profile")
     public String getProfile(Model model) {
         model.addAttribute("profile", profileService.getProfileDto());
@@ -52,9 +53,9 @@ public class ProfileController {
             return "redirect:/profile";
         } else {
             List<ObjectError> errors = bindingResult.getAllErrors();
-            StringBuilder errorMsg = new StringBuilder();
-            errors.forEach(error1 -> errorMsg.append(error1.getDefaultMessage()).append('\n'));
-            ErrorMessage errorMessage = new ErrorMessage(errorMsg.toString());
+            StringBuilder errorMess = new StringBuilder();
+            errors.forEach(error1 -> errorMess.append(error1.getDefaultMessage()).append('\n'));
+            ErrorMessage errorMessage = new ErrorMessage(errorMess.toString());
             redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
             return "redirect:/updateProfile";
         }
