@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Workout summary</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Ćwiczenie</th>
+                <th>Zrobione</th>
+            </tr>
+        </thead>
+        <form th:action="@{/summarize}" method="post">
+            <tbody>
+                <tr>
+                    <td>Podciąganie nachwytem</td>
+                    <td>
+                        <input type="checkbox" value="false" th:field="${summarize.pullUp}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pompki</td>
+                    <td>
+                        <input type="checkbox" value="false" th:field="${summarize.pump}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Muscle upy</td>
+                    <td>
+                        <input type="checkbox" value="false" th:field="${summarize.muscleUp}">
+                    </td>
+                </tr>
+                <input type="submit">
+            </tbody>
+        </form>
+    </table>
+</body>
+</html>
